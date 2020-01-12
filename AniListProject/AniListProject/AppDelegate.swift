@@ -13,9 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let dataController = DataController(modelName: "AniListProject")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        dataController.load()
+        
+        let splashView = SplashWireFrame.createSplashModule(with: dataController)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = splashView
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
