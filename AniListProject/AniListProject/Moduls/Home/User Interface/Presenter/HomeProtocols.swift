@@ -17,7 +17,8 @@ protocol HomeViewProtocol: class {
 protocol HomeWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
     static func createHomeModule() -> UIViewController
-    static func createHomeModule(withData dataController: DataController)  -> UITabBarController 
+    static func createHomeModule(withData dataController: DataController)  -> UITabBarController
+    static func createHomeModule(withData dataController: DataController, submodules: HomeWireFrame.Submodules)  -> UITabBarController
 }
 
 protocol HomePresenterProtocol: class {

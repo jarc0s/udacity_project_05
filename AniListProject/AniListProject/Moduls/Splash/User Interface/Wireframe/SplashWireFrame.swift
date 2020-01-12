@@ -13,10 +13,12 @@ class SplashWireFrame: SplashWireFrameProtocol {
     
     func presentHomeView(from view: SplashViewProtocol, withDataController: DataController) {
         
+        let subModules = (
+            homeAnime: AnimeHomeWireFrame.createAnimeHomeModule(),
+            homeManga: MangaHomeWireFrame.createMangaHomeModule()
+            )
         
-        
-        
-        let homeTabBarView = HomeWireFrame.createHomeModule(withData: withDataController)
+        let homeTabBarView = HomeWireFrame.createHomeModule(withData: withDataController, submodules: subModules)
         if let newView = view as? UIViewController {
             newView.navigationController?.pushViewController(homeTabBarView, animated: true)
         }

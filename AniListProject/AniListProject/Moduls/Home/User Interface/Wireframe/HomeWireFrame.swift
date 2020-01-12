@@ -13,8 +13,6 @@ import UIKit
 
 class HomeWireFrame: HomeWireFrameProtocol {
     
-    
-    
     typealias Submodules = (
         homeAnime: UIViewController,
         homeManga: UIViewController
@@ -25,24 +23,22 @@ class HomeWireFrame: HomeWireFrameProtocol {
         let tabs = HomeWireFrame.tabs(usingSubModules: submodules)
         let tabViewController = HomeView(tabs: tabs)
         
-        if let view = tabViewController as? HomeView {
-            let presenter: HomePresenterProtocol & HomeInteractorOutputProtocol = HomePresenter()
-            let interactor: HomeInteractorInputProtocol & HomeRemoteDataManagerOutputProtocol = HomeInteractor()
-            let localDataManager: HomeLocalDataManagerInputProtocol = HomeLocalDataManager()
-            let remoteDataManager: HomeRemoteDataManagerInputProtocol = HomeRemoteDataManager()
-            let wireFrame: HomeWireFrameProtocol = HomeWireFrame()
-            
-            view.presenter = presenter
-            presenter.view = view
-            presenter.wireFrame = wireFrame
-            presenter.interactor = interactor
-            interactor.presenter = presenter
-            interactor.localDatamanager = localDataManager
-            interactor.remoteDatamanager = remoteDataManager
-            
-            return tabViewController as! UITabBarController
-        }
-        return UITabBarController()
+        let presenter: HomePresenterProtocol & HomeInteractorOutputProtocol = HomePresenter()
+        let interactor: HomeInteractorInputProtocol & HomeRemoteDataManagerOutputProtocol = HomeInteractor()
+        let localDataManager: HomeLocalDataManagerInputProtocol = HomeLocalDataManager()
+        let remoteDataManager: HomeRemoteDataManagerInputProtocol = HomeRemoteDataManager()
+        let wireFrame: HomeWireFrameProtocol = HomeWireFrame()
+        
+        tabViewController.presenter = presenter
+        presenter.view = tabViewController
+        presenter.wireFrame = wireFrame
+        presenter.interactor = interactor
+        interactor.presenter = presenter
+        interactor.localDatamanager = localDataManager
+        interactor.remoteDatamanager = remoteDataManager
+        
+        return tabViewController
+        
     }
     
     static func createHomeModule(withData dataController: DataController) -> UITabBarController {

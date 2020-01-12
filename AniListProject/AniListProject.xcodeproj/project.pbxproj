@@ -30,6 +30,22 @@
 		0DFB952423CABC07001D5767 /* HomeRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB951D23CABC07001D5767 /* HomeRemoteDataManager.swift */; };
 		0DFB952523CABC07001D5767 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB951E23CABC07001D5767 /* HomeView.swift */; };
 		0DFB952623CABC07001D5767 /* HomeWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB951F23CABC07001D5767 /* HomeWireFrame.swift */; };
+		0DFB953B23CAE456001D5767 /* AnimeHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB953423CAE456001D5767 /* AnimeHomeInteractor.swift */; };
+		0DFB953C23CAE456001D5767 /* AnimeHomeLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB953523CAE456001D5767 /* AnimeHomeLocalDataManager.swift */; };
+		0DFB953D23CAE456001D5767 /* AnimeHomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB953623CAE456001D5767 /* AnimeHomePresenter.swift */; };
+		0DFB953E23CAE456001D5767 /* AnimeHomeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB953723CAE456001D5767 /* AnimeHomeProtocols.swift */; };
+		0DFB953F23CAE456001D5767 /* AnimeHomeRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB953823CAE456001D5767 /* AnimeHomeRemoteDataManager.swift */; };
+		0DFB954023CAE456001D5767 /* AnimeHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB953923CAE456001D5767 /* AnimeHomeView.swift */; };
+		0DFB954123CAE456001D5767 /* AnimeHomeWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB953A23CAE456001D5767 /* AnimeHomeWireFrame.swift */; };
+		0DFB954A23CAE4DD001D5767 /* AnimeHomeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DFB954923CAE4DD001D5767 /* AnimeHomeView.storyboard */; };
+		0DFB955323CAE5CB001D5767 /* MangaHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB954C23CAE5CB001D5767 /* MangaHomeInteractor.swift */; };
+		0DFB955423CAE5CB001D5767 /* MangaHomeLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB954D23CAE5CB001D5767 /* MangaHomeLocalDataManager.swift */; };
+		0DFB955523CAE5CB001D5767 /* MangaHomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB954E23CAE5CB001D5767 /* MangaHomePresenter.swift */; };
+		0DFB955623CAE5CB001D5767 /* MangaHomeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB954F23CAE5CB001D5767 /* MangaHomeProtocols.swift */; };
+		0DFB955723CAE5CB001D5767 /* MangaHomeRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB955023CAE5CB001D5767 /* MangaHomeRemoteDataManager.swift */; };
+		0DFB955823CAE5CB001D5767 /* MangaHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB955123CAE5CB001D5767 /* MangaHomeView.swift */; };
+		0DFB955923CAE5CB001D5767 /* MangaHomeWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB955223CAE5CB001D5767 /* MangaHomeWireFrame.swift */; };
+		0DFB956423CAE653001D5767 /* MangaHomeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DFB956323CAE653001D5767 /* MangaHomeView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +95,22 @@
 		0DFB951D23CABC07001D5767 /* HomeRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemoteDataManager.swift; sourceTree = "<group>"; };
 		0DFB951E23CABC07001D5767 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0DFB951F23CABC07001D5767 /* HomeWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireFrame.swift; sourceTree = "<group>"; };
+		0DFB953423CAE456001D5767 /* AnimeHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeHomeInteractor.swift; sourceTree = "<group>"; };
+		0DFB953523CAE456001D5767 /* AnimeHomeLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeHomeLocalDataManager.swift; sourceTree = "<group>"; };
+		0DFB953623CAE456001D5767 /* AnimeHomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeHomePresenter.swift; sourceTree = "<group>"; };
+		0DFB953723CAE456001D5767 /* AnimeHomeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeHomeProtocols.swift; sourceTree = "<group>"; };
+		0DFB953823CAE456001D5767 /* AnimeHomeRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeHomeRemoteDataManager.swift; sourceTree = "<group>"; };
+		0DFB953923CAE456001D5767 /* AnimeHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeHomeView.swift; sourceTree = "<group>"; };
+		0DFB953A23CAE456001D5767 /* AnimeHomeWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeHomeWireFrame.swift; sourceTree = "<group>"; };
+		0DFB954923CAE4DD001D5767 /* AnimeHomeView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AnimeHomeView.storyboard; sourceTree = "<group>"; };
+		0DFB954C23CAE5CB001D5767 /* MangaHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaHomeInteractor.swift; sourceTree = "<group>"; };
+		0DFB954D23CAE5CB001D5767 /* MangaHomeLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaHomeLocalDataManager.swift; sourceTree = "<group>"; };
+		0DFB954E23CAE5CB001D5767 /* MangaHomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaHomePresenter.swift; sourceTree = "<group>"; };
+		0DFB954F23CAE5CB001D5767 /* MangaHomeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaHomeProtocols.swift; sourceTree = "<group>"; };
+		0DFB955023CAE5CB001D5767 /* MangaHomeRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaHomeRemoteDataManager.swift; sourceTree = "<group>"; };
+		0DFB955123CAE5CB001D5767 /* MangaHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaHomeView.swift; sourceTree = "<group>"; };
+		0DFB955223CAE5CB001D5767 /* MangaHomeWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaHomeWireFrame.swift; sourceTree = "<group>"; };
+		0DFB956323CAE653001D5767 /* MangaHomeView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MangaHomeView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +141,8 @@
 		0D666C4623CA50ED002FDB94 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				0DFB954B23CAE5B5001D5767 /* Manga Home */,
+				0DFB953323CAE43A001D5767 /* Anime Home */,
 				0DFB951823CABBED001D5767 /* Home */,
 				0D666C4723CA50F4002FDB94 /* Splash */,
 			);
@@ -317,6 +351,148 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
+		0DFB953323CAE43A001D5767 /* Anime Home */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB954323CAE469001D5767 /* User Interface */,
+				0DFB954223CAE45E001D5767 /* Application Logic */,
+			);
+			path = "Anime Home";
+			sourceTree = "<group>";
+		};
+		0DFB954223CAE45E001D5767 /* Application Logic */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB954823CAE4B9001D5767 /* Manager */,
+				0DFB954723CAE4AB001D5767 /* Interactor */,
+			);
+			path = "Application Logic";
+			sourceTree = "<group>";
+		};
+		0DFB954323CAE469001D5767 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB954623CAE497001D5767 /* Wireframe */,
+				0DFB954523CAE48D001D5767 /* View */,
+				0DFB954423CAE485001D5767 /* Presenter */,
+			);
+			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		0DFB954423CAE485001D5767 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB953723CAE456001D5767 /* AnimeHomeProtocols.swift */,
+				0DFB953623CAE456001D5767 /* AnimeHomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0DFB954523CAE48D001D5767 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB953923CAE456001D5767 /* AnimeHomeView.swift */,
+				0DFB954923CAE4DD001D5767 /* AnimeHomeView.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0DFB954623CAE497001D5767 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB953A23CAE456001D5767 /* AnimeHomeWireFrame.swift */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
+		0DFB954723CAE4AB001D5767 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB953423CAE456001D5767 /* AnimeHomeInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		0DFB954823CAE4B9001D5767 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB953523CAE456001D5767 /* AnimeHomeLocalDataManager.swift */,
+				0DFB953823CAE456001D5767 /* AnimeHomeRemoteDataManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		0DFB954B23CAE5B5001D5767 /* Manga Home */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB955F23CAE61C001D5767 /* User Interface */,
+				0DFB955B23CAE5DC001D5767 /* Application Logic */,
+			);
+			path = "Manga Home";
+			sourceTree = "<group>";
+		};
+		0DFB955B23CAE5DC001D5767 /* Application Logic */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB955D23CAE5F4001D5767 /* Interactor */,
+				0DFB955C23CAE5E6001D5767 /* Manager */,
+			);
+			path = "Application Logic";
+			sourceTree = "<group>";
+		};
+		0DFB955C23CAE5E6001D5767 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB954D23CAE5CB001D5767 /* MangaHomeLocalDataManager.swift */,
+				0DFB955023CAE5CB001D5767 /* MangaHomeRemoteDataManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		0DFB955D23CAE5F4001D5767 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB954C23CAE5CB001D5767 /* MangaHomeInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		0DFB955F23CAE61C001D5767 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB956223CAE638001D5767 /* Wireframe */,
+				0DFB956123CAE62F001D5767 /* View */,
+				0DFB956023CAE625001D5767 /* Presenter */,
+			);
+			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		0DFB956023CAE625001D5767 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB954E23CAE5CB001D5767 /* MangaHomePresenter.swift */,
+				0DFB954F23CAE5CB001D5767 /* MangaHomeProtocols.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0DFB956123CAE62F001D5767 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB955123CAE5CB001D5767 /* MangaHomeView.swift */,
+				0DFB956323CAE653001D5767 /* MangaHomeView.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0DFB956223CAE638001D5767 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				0DFB955223CAE5CB001D5767 /* MangaHomeWireFrame.swift */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -422,6 +598,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D753E0923CA4BEC00A7061D /* LaunchScreen.storyboard in Resources */,
+				0DFB956423CAE653001D5767 /* MangaHomeView.storyboard in Resources */,
+				0DFB954A23CAE4DD001D5767 /* AnimeHomeView.storyboard in Resources */,
 				0D753E0623CA4BEC00A7061D /* Assets.xcassets in Resources */,
 				0D666C7A23CA6125002FDB94 /* SplashView.storyboard in Resources */,
 			);
@@ -448,23 +626,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DFB955523CAE5CB001D5767 /* MangaHomePresenter.swift in Sources */,
+				0DFB954123CAE456001D5767 /* AnimeHomeWireFrame.swift in Sources */,
+				0DFB955923CAE5CB001D5767 /* MangaHomeWireFrame.swift in Sources */,
+				0DFB955823CAE5CB001D5767 /* MangaHomeView.swift in Sources */,
 				0DFB952423CABC07001D5767 /* HomeRemoteDataManager.swift in Sources */,
+				0DFB953B23CAE456001D5767 /* AnimeHomeInteractor.swift in Sources */,
+				0DFB955423CAE5CB001D5767 /* MangaHomeLocalDataManager.swift in Sources */,
 				0DFB952123CABC07001D5767 /* HomeLocalDataManager.swift in Sources */,
 				0DFB952323CABC07001D5767 /* HomeProtocols.swift in Sources */,
 				0D666C5223CA510F002FDB94 /* SplashProtocols.swift in Sources */,
+				0DFB953C23CAE456001D5767 /* AnimeHomeLocalDataManager.swift in Sources */,
 				0D753DFF23CA4BEB00A7061D /* AppDelegate.swift in Sources */,
+				0DFB955323CAE5CB001D5767 /* MangaHomeInteractor.swift in Sources */,
 				0DFB952523CABC07001D5767 /* HomeView.swift in Sources */,
 				0D666C5023CA510F002FDB94 /* SplashLocalDataManager.swift in Sources */,
+				0DFB953E23CAE456001D5767 /* AnimeHomeProtocols.swift in Sources */,
+				0DFB955623CAE5CB001D5767 /* MangaHomeProtocols.swift in Sources */,
 				0DFB952623CABC07001D5767 /* HomeWireFrame.swift in Sources */,
 				0DFB952023CABC07001D5767 /* HomeInteractor.swift in Sources */,
 				0D666C4F23CA510F002FDB94 /* SplashInteractor.swift in Sources */,
 				0D666C5323CA510F002FDB94 /* SplashRemoteDataManager.swift in Sources */,
 				0DFB952223CABC07001D5767 /* HomePresenter.swift in Sources */,
 				0D666C6F23CA5A2F002FDB94 /* DataController.swift in Sources */,
+				0DFB953D23CAE456001D5767 /* AnimeHomePresenter.swift in Sources */,
 				0D666C5523CA510F002FDB94 /* SplashWireFrame.swift in Sources */,
 				0D666C5123CA510F002FDB94 /* SplashPresenter.swift in Sources */,
 				0D666C5423CA510F002FDB94 /* SplashView.swift in Sources */,
+				0DFB954023CAE456001D5767 /* AnimeHomeView.swift in Sources */,
 				0D666C7123CA5B84002FDB94 /* DataSource.swift in Sources */,
+				0DFB953F23CAE456001D5767 /* AnimeHomeRemoteDataManager.swift in Sources */,
+				0DFB955723CAE5CB001D5767 /* MangaHomeRemoteDataManager.swift in Sources */,
 				0D666C6D23CA59ED002FDB94 /* AniListProject.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
