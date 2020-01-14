@@ -46,6 +46,10 @@
 		0DFB955823CAE5CB001D5767 /* MangaHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB955123CAE5CB001D5767 /* MangaHomeView.swift */; };
 		0DFB955923CAE5CB001D5767 /* MangaHomeWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB955223CAE5CB001D5767 /* MangaHomeWireFrame.swift */; };
 		0DFB956423CAE653001D5767 /* MangaHomeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DFB956323CAE653001D5767 /* MangaHomeView.storyboard */; };
+		8827E2CC23CCFB1800F48251 /* ALPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E2CB23CCFB1800F48251 /* ALPClient.swift */; };
+		8827E2D323CD221500F48251 /* ReadFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E2D223CD221500F48251 /* ReadFiles.swift */; };
+		8827E2D623CD273E00F48251 /* file01.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8827E2D523CD273E00F48251 /* file01.txt */; };
+		88F2495C23CD38BB008D7107 /* ALPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2495B23CD38BB008D7107 /* ALPRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +115,10 @@
 		0DFB955123CAE5CB001D5767 /* MangaHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaHomeView.swift; sourceTree = "<group>"; };
 		0DFB955223CAE5CB001D5767 /* MangaHomeWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaHomeWireFrame.swift; sourceTree = "<group>"; };
 		0DFB956323CAE653001D5767 /* MangaHomeView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MangaHomeView.storyboard; sourceTree = "<group>"; };
+		8827E2CB23CCFB1800F48251 /* ALPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPClient.swift; sourceTree = "<group>"; };
+		8827E2D223CD221500F48251 /* ReadFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFiles.swift; sourceTree = "<group>"; };
+		8827E2D523CD273E00F48251 /* file01.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = file01.txt; sourceTree = "<group>"; };
+		88F2495B23CD38BB008D7107 /* ALPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +146,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D666C4623CA50ED002FDB94 /* Moduls */ = {
+		0D666C4623CA50ED002FDB94 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				0DFB954B23CAE5B5001D5767 /* Manga Home */,
@@ -146,7 +154,7 @@
 				0DFB951823CABBED001D5767 /* Home */,
 				0D666C4723CA50F4002FDB94 /* Splash */,
 			);
-			path = Moduls;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		0D666C4723CA50F4002FDB94 /* Splash */ = {
@@ -164,6 +172,8 @@
 				0D666C6B23CA59ED002FDB94 /* AniListProject.xcdatamodeld */,
 				0D666C6E23CA5A2F002FDB94 /* DataController.swift */,
 				0D666C7023CA5B84002FDB94 /* DataSource.swift */,
+				8827E2CB23CCFB1800F48251 /* ALPClient.swift */,
+				8827E2D223CD221500F48251 /* ReadFiles.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -253,8 +263,10 @@
 		0D753DFD23CA4BEB00A7061D /* AniListProject */ = {
 			isa = PBXGroup;
 			children = (
+				88F2495A23CD388B008D7107 /* Model */,
+				8827E2CD23CD202400F48251 /* Resources */,
 				0D666C5623CA511E002FDB94 /* Data */,
-				0D666C4623CA50ED002FDB94 /* Moduls */,
+				0D666C4623CA50ED002FDB94 /* Modules */,
 				0D753DFE23CA4BEB00A7061D /* AppDelegate.swift */,
 				0D753E0523CA4BEC00A7061D /* Assets.xcassets */,
 				0D753E0723CA4BEC00A7061D /* LaunchScreen.storyboard */,
@@ -493,6 +505,22 @@
 			path = Wireframe;
 			sourceTree = "<group>";
 		};
+		8827E2CD23CD202400F48251 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8827E2D523CD273E00F48251 /* file01.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88F2495A23CD388B008D7107 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88F2495B23CD38BB008D7107 /* ALPRequest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -600,6 +628,7 @@
 				0D753E0923CA4BEC00A7061D /* LaunchScreen.storyboard in Resources */,
 				0DFB956423CAE653001D5767 /* MangaHomeView.storyboard in Resources */,
 				0DFB954A23CAE4DD001D5767 /* AnimeHomeView.storyboard in Resources */,
+				8827E2D623CD273E00F48251 /* file01.txt in Resources */,
 				0D753E0623CA4BEC00A7061D /* Assets.xcassets in Resources */,
 				0D666C7A23CA6125002FDB94 /* SplashView.storyboard in Resources */,
 			);
@@ -639,12 +668,14 @@
 				0DFB953C23CAE456001D5767 /* AnimeHomeLocalDataManager.swift in Sources */,
 				0D753DFF23CA4BEB00A7061D /* AppDelegate.swift in Sources */,
 				0DFB955323CAE5CB001D5767 /* MangaHomeInteractor.swift in Sources */,
+				8827E2D323CD221500F48251 /* ReadFiles.swift in Sources */,
 				0DFB952523CABC07001D5767 /* HomeView.swift in Sources */,
 				0D666C5023CA510F002FDB94 /* SplashLocalDataManager.swift in Sources */,
 				0DFB953E23CAE456001D5767 /* AnimeHomeProtocols.swift in Sources */,
 				0DFB955623CAE5CB001D5767 /* MangaHomeProtocols.swift in Sources */,
 				0DFB952623CABC07001D5767 /* HomeWireFrame.swift in Sources */,
 				0DFB952023CABC07001D5767 /* HomeInteractor.swift in Sources */,
+				8827E2CC23CCFB1800F48251 /* ALPClient.swift in Sources */,
 				0D666C4F23CA510F002FDB94 /* SplashInteractor.swift in Sources */,
 				0D666C5323CA510F002FDB94 /* SplashRemoteDataManager.swift in Sources */,
 				0DFB952223CABC07001D5767 /* HomePresenter.swift in Sources */,
@@ -655,6 +686,7 @@
 				0D666C5423CA510F002FDB94 /* SplashView.swift in Sources */,
 				0DFB954023CAE456001D5767 /* AnimeHomeView.swift in Sources */,
 				0D666C7123CA5B84002FDB94 /* DataSource.swift in Sources */,
+				88F2495C23CD38BB008D7107 /* ALPRequest.swift in Sources */,
 				0DFB953F23CAE456001D5767 /* AnimeHomeRemoteDataManager.swift in Sources */,
 				0DFB955723CAE5CB001D5767 /* MangaHomeRemoteDataManager.swift in Sources */,
 				0D666C6D23CA59ED002FDB94 /* AniListProject.xcdatamodeld in Sources */,

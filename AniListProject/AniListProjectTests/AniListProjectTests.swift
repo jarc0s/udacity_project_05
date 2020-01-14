@@ -30,5 +30,11 @@ class AniListProjectTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testReadFileQuery() {
+        let query = ReadFiles.ReadQueryFromFile(withFileName: "file01", type: "txt")
+        print(query ?? "empty")
+        XCTAssert((query != nil), "No exist the file")
+    }
 
 }
