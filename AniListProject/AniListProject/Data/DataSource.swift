@@ -32,5 +32,10 @@ struct DataSource {
         
     }
     
+    
+    
+    
+//    static func saveEntity<T: NSManagedObjectModel>(entityClass: T.Type)
+    
 }
 

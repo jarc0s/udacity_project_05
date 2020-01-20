@@ -49,6 +49,15 @@
 		8827E2CC23CCFB1800F48251 /* ALPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E2CB23CCFB1800F48251 /* ALPClient.swift */; };
 		8827E2D323CD221500F48251 /* ReadFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E2D223CD221500F48251 /* ReadFiles.swift */; };
 		8827E2D623CD273E00F48251 /* file01.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8827E2D523CD273E00F48251 /* file01.txt */; };
+		8858FAEC23CF6EEC00311701 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8858FAEB23CF6EEC00311701 /* PageInfo.swift */; };
+		88BCD32623D3863000BAA052 /* NSManagedObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCD32523D3863000BAA052 /* NSManagedObject+Extension.swift */; };
+		88C1D7D123D6168900A9CED9 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1D7D023D6168900A9CED9 /* String+Extension.swift */; };
+		88E5EB3723CE466200A62B07 /* DecodingContainer+AnyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5EB3523CE466200A62B07 /* DecodingContainer+AnyCollection.swift */; };
+		88E5EB3823CE466200A62B07 /* DecodingContainer+AnyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5EB3523CE466200A62B07 /* DecodingContainer+AnyCollection.swift */; };
+		88E5EB3923CE466200A62B07 /* EncodingContainer+AnyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5EB3623CE466200A62B07 /* EncodingContainer+AnyCollection.swift */; };
+		88E5EB3A23CE466200A62B07 /* EncodingContainer+AnyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5EB3623CE466200A62B07 /* EncodingContainer+AnyCollection.swift */; };
+		88E5EB7A23CE7B9B00A62B07 /* file02.txt in Resources */ = {isa = PBXBuildFile; fileRef = 88E5EB7923CE7B9B00A62B07 /* file02.txt */; };
+		88E5EB7B23CE7B9B00A62B07 /* file02.txt in Resources */ = {isa = PBXBuildFile; fileRef = 88E5EB7923CE7B9B00A62B07 /* file02.txt */; };
 		88F2495C23CD38BB008D7107 /* ALPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2495B23CD38BB008D7107 /* ALPRequest.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +127,12 @@
 		8827E2CB23CCFB1800F48251 /* ALPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPClient.swift; sourceTree = "<group>"; };
 		8827E2D223CD221500F48251 /* ReadFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFiles.swift; sourceTree = "<group>"; };
 		8827E2D523CD273E00F48251 /* file01.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = file01.txt; sourceTree = "<group>"; };
+		8858FAEB23CF6EEC00311701 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
+		88BCD32523D3863000BAA052 /* NSManagedObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extension.swift"; sourceTree = "<group>"; };
+		88C1D7D023D6168900A9CED9 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		88E5EB3523CE466200A62B07 /* DecodingContainer+AnyCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DecodingContainer+AnyCollection.swift"; sourceTree = "<group>"; };
+		88E5EB3623CE466200A62B07 /* EncodingContainer+AnyCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EncodingContainer+AnyCollection.swift"; sourceTree = "<group>"; };
+		88E5EB7923CE7B9B00A62B07 /* file02.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = file02.txt; sourceTree = "<group>"; };
 		88F2495B23CD38BB008D7107 /* ALPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,6 +278,7 @@
 		0D753DFD23CA4BEB00A7061D /* AniListProject */ = {
 			isa = PBXGroup;
 			children = (
+				88BCD32423D3861B00BAA052 /* Extensions */,
 				88F2495A23CD388B008D7107 /* Model */,
 				8827E2CD23CD202400F48251 /* Resources */,
 				0D666C5623CA511E002FDB94 /* Data */,
@@ -509,14 +525,27 @@
 			isa = PBXGroup;
 			children = (
 				8827E2D523CD273E00F48251 /* file01.txt */,
+				88E5EB7923CE7B9B00A62B07 /* file02.txt */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		88BCD32423D3861B00BAA052 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				88BCD32523D3863000BAA052 /* NSManagedObject+Extension.swift */,
+				88C1D7D023D6168900A9CED9 /* String+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		88F2495A23CD388B008D7107 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				88E5EB3523CE466200A62B07 /* DecodingContainer+AnyCollection.swift */,
+				88E5EB3623CE466200A62B07 /* EncodingContainer+AnyCollection.swift */,
 				88F2495B23CD38BB008D7107 /* ALPRequest.swift */,
+				8858FAEB23CF6EEC00311701 /* PageInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -629,6 +658,7 @@
 				0DFB956423CAE653001D5767 /* MangaHomeView.storyboard in Resources */,
 				0DFB954A23CAE4DD001D5767 /* AnimeHomeView.storyboard in Resources */,
 				8827E2D623CD273E00F48251 /* file01.txt in Resources */,
+				88E5EB7A23CE7B9B00A62B07 /* file02.txt in Resources */,
 				0D753E0623CA4BEC00A7061D /* Assets.xcassets in Resources */,
 				0D666C7A23CA6125002FDB94 /* SplashView.storyboard in Resources */,
 			);
@@ -638,6 +668,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E5EB7B23CE7B9B00A62B07 /* file02.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,13 +688,18 @@
 			files = (
 				0DFB955523CAE5CB001D5767 /* MangaHomePresenter.swift in Sources */,
 				0DFB954123CAE456001D5767 /* AnimeHomeWireFrame.swift in Sources */,
+				8858FAEC23CF6EEC00311701 /* PageInfo.swift in Sources */,
 				0DFB955923CAE5CB001D5767 /* MangaHomeWireFrame.swift in Sources */,
+				88E5EB3723CE466200A62B07 /* DecodingContainer+AnyCollection.swift in Sources */,
 				0DFB955823CAE5CB001D5767 /* MangaHomeView.swift in Sources */,
 				0DFB952423CABC07001D5767 /* HomeRemoteDataManager.swift in Sources */,
 				0DFB953B23CAE456001D5767 /* AnimeHomeInteractor.swift in Sources */,
+				88C1D7D123D6168900A9CED9 /* String+Extension.swift in Sources */,
+				88E5EB3923CE466200A62B07 /* EncodingContainer+AnyCollection.swift in Sources */,
 				0DFB955423CAE5CB001D5767 /* MangaHomeLocalDataManager.swift in Sources */,
 				0DFB952123CABC07001D5767 /* HomeLocalDataManager.swift in Sources */,
 				0DFB952323CABC07001D5767 /* HomeProtocols.swift in Sources */,
+				88BCD32623D3863000BAA052 /* NSManagedObject+Extension.swift in Sources */,
 				0D666C5223CA510F002FDB94 /* SplashProtocols.swift in Sources */,
 				0DFB953C23CAE456001D5767 /* AnimeHomeLocalDataManager.swift in Sources */,
 				0D753DFF23CA4BEB00A7061D /* AppDelegate.swift in Sources */,
@@ -698,6 +734,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D753E1423CA4BED00A7061D /* AniListProjectTests.swift in Sources */,
+				88E5EB3A23CE466200A62B07 /* EncodingContainer+AnyCollection.swift in Sources */,
+				88E5EB3823CE466200A62B07 /* DecodingContainer+AnyCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

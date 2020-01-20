@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G8030" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Media" representedClassName="Media" syncable="YES" codeGenerationType="class"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="MCoverImage" representedClassName="MCoverImage" syncable="YES" codeGenerationType="class">
+        <attribute name="banner" optional="YES" attributeType="String"/>
+        <attribute name="bannerImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="large" optional="YES" attributeType="String"/>
+        <attribute name="largeImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="medium" optional="YES" attributeType="String"/>
+        <attribute name="mediumImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <relationship name="media" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="coverImage" inverseEntity="Media"/>
+    </entity>
+    <entity name="Media" representedClassName="Media" syncable="YES" codeGenerationType="class">
+        <attribute name="countryOfOrigin" optional="YES" attributeType="String"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="episodes" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="meanScore" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="season" optional="YES" attributeType="String"/>
+        <attribute name="stardate" optional="YES" attributeType="String"/>
+        <relationship name="coverImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MCoverImage" inverseName="media" inverseEntity="MCoverImage"/>
+        <relationship name="queryType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QueryType" inverseName="media" inverseEntity="QueryType"/>
+        <relationship name="title" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTitle" inverseName="media" inverseEntity="MTitle"/>
+    </entity>
+    <entity name="MTitle" representedClassName="MTitle" syncable="YES" codeGenerationType="class">
+        <attribute name="english" optional="YES" attributeType="String"/>
+        <attribute name="native" optional="YES" attributeType="String"/>
+        <attribute name="romanji" optional="YES" attributeType="String"/>
+        <relationship name="media" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="title" inverseEntity="Media"/>
+    </entity>
+    <entity name="PageInfo" representedClassName="PageInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="currentPage" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="hasNextPage" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastPage" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="perPage" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="total" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="queryType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QueryType" inverseName="pageInfo" inverseEntity="QueryType"/>
+    </entity>
+    <entity name="QueryType" representedClassName="QueryType" syncable="YES" codeGenerationType="class">
+        <attribute name="queryType" optional="YES" attributeType="String"/>
+        <relationship name="media" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Media" inverseName="queryType" inverseEntity="Media"/>
+        <relationship name="pageInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PageInfo" inverseName="queryType" inverseEntity="PageInfo"/>
+    </entity>
     <elements>
-        <element name="Media" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="Media" positionX="-348.11328125" positionY="-187.703125" width="128" height="193"/>
+        <element name="PageInfo" positionX="-238.875" positionY="55.546875" width="128" height="133"/>
+        <element name="QueryType" positionX="-647.15625" positionY="-87.484375" width="148.125" height="88"/>
+        <element name="MTitle" positionX="-76.12890625" positionY="-233.328125" width="128" height="103"/>
+        <element name="MCoverImage" positionX="-117.3515625" positionY="-391.1484375" width="128" height="163"/>
     </elements>
 </model>

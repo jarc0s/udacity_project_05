@@ -14,7 +14,7 @@ struct ReadFiles {
         
         guard let filePath = Bundle.main.path(forResource: fileName, ofType: type) else { return nil }
         
-        if let contents = try? String(contentsOfFile: filePath) {
+        if let contents = try? String(contentsOfFile: filePath, encoding: .utf8) {
             return contents
         }
         
