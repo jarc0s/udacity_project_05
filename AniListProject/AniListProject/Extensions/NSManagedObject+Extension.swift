@@ -64,18 +64,34 @@ struct ReflectionEntities {
     static func makeCast(value: Any, types: Any) -> Any?{
         
         switch types {
-        case _ as Int32.Type:
-            fallthrough
-            
-        default:
-            return nil
-        }
-        
-        
-        if types is Int32.Type {
-            if let newValue: Int = value as? Int {
+        case _ as Int32.Type,
+             _ as Int8.Type,
+             _ as Int16.Type,
+             _ as Int.Type,
+             _ as UInt16.Type,
+             _ as UInt32.Type,
+             _ as UInt.Type:
+            if let newValue = value as? Int {
                 return Int32(newValue)
             }
+        case _ as Bool.Type:
+            if let newValue = value as? Bool {
+                return newValue
+            }
+        case _ as Double.Type:
+            if let newValue = value as? Double {
+                return newValue
+            }
+        case _ as Float.Type:
+            if let newValue = value as? Float {
+                return newValue
+            }
+        case _ as Decimal.Type:
+            if let newValue = value as? Decimal {
+                return newValue
+            }
+        default:
+            return nil
         }
         return nil
     }
@@ -90,70 +106,27 @@ extension PageInfo {
         
         for (name, type) in types {
             print(dict[name] ?? "no key present")
-            switch type {
-                case _ as Int32.Type:
-//                    if let value: Int = dict[name] as? Int {
-//                        self.setValue(Int32(value), forKey: name)
-//                    }
-                    if let value = ReflectionEntities.makeCast(value: dict[name] as Any, types: type) {
-                        self.setValue(value, forKey: name)
-                    }
-                    print("SI hacer cast to Int32")
-                case _ as Int8.Type:
-                    if let value: Int = dict[name] as? Int {
-                        self.setValue(Int8(value), forKey: name)
-                    }
-                    print("SI hacer cast to Int8")
-                case _ as Int16.Type:
-                    if let value: Int = dict[name] as? Int {
-                        self.setValue(Int16(value), forKey: name)
-                    }
-                    print("SI hacer cast to Int16")
-                case _ as Int.Type:
-                    if let value: Int = dict[name] as? Int {
-                        self.setValue(value , forKey: name)
-                    }
-                    print("SI hacer cast to Int")
-                case _ as UInt16.Type:
-                    if let value: Int = dict[name] as? Int {
-                        self.setValue(UInt16(value), forKey: name)
-                    }
-                    print("SI hacer cast to UInt16")
-                case _ as UInt32.Type:
-                    if let value: Int = dict[name] as? Int {
-                        self.setValue(UInt32(value), forKey: name)
-                    }
-                    print("SI hacer cast to UInt32")
-                case _ as UInt.Type:
-                    if let value: Int = dict[name] as? Int {
-                        self.setValue(UInt(value), forKey: name)
-                    }
-                    print("SI hacer cast to UInt")
-                case _ as Bool.Type:
-                    if let value: Bool = dict[name] as? Bool {
-                        self.setValue(value, forKey: name)
-                    }
-                    print("SI hacer cast to Bool")
-                case _ as Double.Type:
-                    if let value: Double = dict[name] as? Double {
-                        self.setValue(value, forKey: name)
-                    }
-                    print("SI hacer cast to Double")
-                case _ as Float.Type:
-                    if let value: Float = dict[name] as? Float {
-                        self.setValue(value, forKey: name)
-                    }
-                    print("SI hacer cast to Float")
-                case _ as Decimal.Type:
-                    if let value: Decimal = dict[name] as? Decimal {
-                        self.setValue(value, forKey: name)
-                    }
-                    print("SI hacer cast to Decimal")
-                default:
-                    print("NO hacer cast")
+            if let value = ReflectionEntities.makeCast(value: dict[name] as Any, types: type) {
+                self.setValue(value, forKey: name)
             }
         }
+        print("setVAlues: \(self.description)")
         
+    }
+}
+
+extension Media {
+    func populateProperties(dictionary dict: [String:Any]) {
+        //1. get all properties names and types
+        
+        guard let types = ReflectionEntities.getTypesOfProperties(in: Media.self) else { return }
+        
+        for (name, type) in types {
+            print(dict[name] ?? "no key present")
+            if let value = ReflectionEntities.makeCast(value: dict[name] as Any, types: type) {
+                self.setValue(value, forKey: name)
+            }
+        }
         print("setVAlues: \(self.description)")
         
     }

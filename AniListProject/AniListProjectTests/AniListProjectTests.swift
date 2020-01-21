@@ -106,7 +106,6 @@ class AniListProjectTests: XCTestCase {
         """
         
         guard let query = ReadFiles.ReadQueryFromFile(withFileName: "file01", type: "txt") else {
-            
             return
         }
         
@@ -138,57 +137,35 @@ class AniListProjectTests: XCTestCase {
         
         if let aplResponse = try? JSONDecoder().decode(APLResponse.self, from: data) {
             if let aplPage = aplResponse.dataResponse["Page"] as! [String:Any]? {
-                if let pageInfo = aplPage["pageInfo"] as! [String: Any]? {
-                    print("pageInfo:  : : : \(pageInfo)")
-                    
-                    let pageInfoModel = PageInfo(context: dataController.viewContext)
-                    
-                    //guard let typess = ReflectionEntities.getTypesOfProperties(in: PageInfo.self) else { return }
-                    
-                    //pageInfoModel.setValue(<#T##value: Any?##Any?#>, forKey: <#T##String#>)
-                    print(type(of: pageInfoModel))
-                    
-                    pageInfoModel.populateProperties(dictionary: pageInfo)
-                    
-                    if let currentPage: Int = pageInfo["currentPage"] as? Int {
-                        //pageInfoModel.currentPage = Int32(currentPage)
-                        pageInfoModel.setValue(Int32(currentPage), forKey: "currentPage")
-                    }
-                    if let hasNextPage: Bool = pageInfo["hasNextPage"] as? Bool {
-                        pageInfoModel.hasNextPage = hasNextPage
-                    }
-                    if let total: Int = pageInfo["total"] as? Int {
-                        pageInfoModel.total = Int32(total)
-                    }
-                    if let lastPage: Int = pageInfo["lastPage"] as? Int {
-                        pageInfoModel.lastPage = Int32(lastPage)
-                    }
-                    if let perPage: Int = pageInfo["perPage"] as? Int {
-                        pageInfoModel.perPage = Int32(perPage)
-                    }
-                    
-                    guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
-                        XCTFail()
-                        return
-                    }
-                    
-                    var lastQuery = results.last
-                    pageInfoModel.queryType = lastQuery
-                    
-                    try? dataController.viewContext.save()
-                    
-                    guard let resultsrrr = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
-                        XCTFail()
-                        return
-                    }
-                    
-                    print(resultsrrr)
-                    
+                guard let pageInfo = aplPage["pageInfo"] as! [String: Any]?,
+                    let media = aplPage["media"] as! [String:Any]? else { XCTFail(); return }
+                
+                
+                print("pageInfo:  : : : \(pageInfo)")
+                
+                let pageInfoModel = PageInfo(context: dataController.viewContext)
+                pageInfoModel.populateProperties(dictionary: pageInfo)
+                
+                let mediaModel = Media(context: dataController.viewContext)
+                mediaModel.populateProperties(dictionary: media)
+                
+                guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+                    XCTFail()
+                    return
                 }
                 
-                if let media = aplPage["media"] as! [Any]? {
-                    print("media:  : : : \(media)")
+                
+                let lastQuery = results.last
+                pageInfoModel.queryType = lastQuery
+                mediaModel.queryType = lastQuery
+                
+                try? dataController.viewContext.save()
+                
+                guard let resultsrrr = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+                    XCTFail()
+                    return
                 }
+                print(resultsrrr)
             }
         }
         
@@ -225,41 +202,6 @@ class AniListProjectTests: XCTestCase {
     func testEntityMapping() {
         
         print(#function)
-        
-        guard let typess = ReflectionEntities.getTypesOfProperties(in: PageInfo.self) else { return }
-        
-        for (name, type) in typess {
-            print("'\(name)' has type '\(type)'")
-            switch type {
-            case _ as Int32.Type:
-                print("SI hacer cast to Int32")
-            case _ as Int8.Type:
-                print("SI hacer cast to Int8")
-            case _ as Int16.Type:
-                print("SI hacer cast to Int16")
-            case _ as Int.Type:
-                print("SI hacer cast to Int")
-            case _ as UInt16.Type:
-                print("SI hacer cast to UInt16")
-            case _ as UInt32.Type:
-                print("SI hacer cast to UInt32")
-            case _ as UInt.Type:
-                print("SI hacer cast to UInt")
-            case _ as Bool.Type:
-                print("SI hacer cast to Bool")
-            case _ as Double.Type:
-                print("SI hacer cast to Double")
-            case _ as Float.Type:
-                print("SI hacer cast to Float")
-            case _ as Decimal.Type:
-                print("SI hacer cast to Decimal")
-            default:
-                print("NO hacer cast")
-            }
-        }
-        
-        
-        
         XCTAssert(true)
     }
     
