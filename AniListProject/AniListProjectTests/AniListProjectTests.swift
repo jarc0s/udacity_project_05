@@ -120,9 +120,14 @@ class AniListProjectTests: XCTestCase {
         
         let request = ALPRequest(query: queryStr, variables: requestDict)
         
-        if let data = try? JSONEncoder().encode(request) {
+        /*if let data = try? JSONEncoder().encode(request) {
             print("\(String(data: data, encoding: .utf8) ?? "")")
             XCTAssert(true)
+        }*/
+        ANPClient.getAnimeListUpcoming(requestBody: request) { response, success, error in
+            if let responseData = response?.dataResponse {
+                print(responseData)
+            }
         }
     }
 
@@ -137,17 +142,13 @@ class AniListProjectTests: XCTestCase {
         
         if let aplResponse = try? JSONDecoder().decode(APLResponse.self, from: data) {
             if let aplPage = aplResponse.dataResponse["Page"] as! [String:Any]? {
-                guard let pageInfo = aplPage["pageInfo"] as! [String: Any]?,
-                    let media = aplPage["media"] as! [String:Any]? else { XCTFail(); return }
-                
-                
-                print("pageInfo:  : : : \(pageInfo)")
+                guard let pageInfo = aplPage["pageInfo"] as! [String: Any]? else {
+                        XCTFail()
+                        return
+                }
                 
                 let pageInfoModel = PageInfo(context: dataController.viewContext)
                 pageInfoModel.populateProperties(dictionary: pageInfo)
-                
-                let mediaModel = Media(context: dataController.viewContext)
-                mediaModel.populateProperties(dictionary: media)
                 
                 guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
                     XCTFail()
@@ -157,7 +158,6 @@ class AniListProjectTests: XCTestCase {
                 
                 let lastQuery = results.last
                 pageInfoModel.queryType = lastQuery
-                mediaModel.queryType = lastQuery
                 
                 try? dataController.viewContext.save()
                 
@@ -168,7 +168,54 @@ class AniListProjectTests: XCTestCase {
                 print(resultsrrr)
             }
         }
+    }
+    
+    
+    func testSaveMediaArrayToQueryType(){
+        guard let response = ReadFiles.ReadQueryFromFile(withFileName: "file02", type: "txt"), let data = response.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
         
+        guard let aplResponse = try? JSONDecoder().decode(APLResponse.self, from: data),
+              let aplPage = aplResponse.dataResponse["Page"] as! [String:Any]?,
+              let media = aplPage["media"] as! [Any]? else {
+            XCTFail()
+            return
+        }
+        
+        guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+            XCTFail()
+            return
+        }
+        
+        let lastQuery = results.last
+        
+        
+        for mediaDic in media {
+            let mediaModel = Media(context: dataController.viewContext)
+            let titleModel = MTitle(context: dataController.viewContext)
+            let coverImageModel = MCoverImage(context: dataController.viewContext)
+            mediaModel.populateProperties(dictionary: mediaDic as! [String : Any], mTitle: titleModel, mCoverImage: coverImageModel)
+            titleModel.media = mediaModel
+            coverImageModel.media = mediaModel
+            mediaModel.queryType = lastQuery
+            try? dataController.viewContext.save()
+        }
+        
+        guard let resultsN = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+            XCTFail()
+            return
+        }
+        
+        let lastQ = resultsN.last
+        print("last?.pageInfo?.currentPage::::: \(lastQ?.pageInfo?.currentPage ?? 0)")
+        print("last?.media?.count::::: \(lastQ?.media?.count ?? 0)")
+        for case let mediaM as Media in lastQ!.media! {
+            print("mediaM.coverImage?.medium ::::: \(mediaM.coverImage?.medium ?? "")")
+        }
+        
+        XCTAssert(true)
     }
     
     func testSaveInfoPageInfo(){

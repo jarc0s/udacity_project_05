@@ -9,14 +9,22 @@
 import Foundation
 
 class AnimeHomeInteractor: AnimeHomeInteractorInputProtocol {
+    
+    
 
     // MARK: Properties
     weak var presenter: AnimeHomeInteractorOutputProtocol?
     var localDatamanager: AnimeHomeLocalDataManagerInputProtocol?
     var remoteDatamanager: AnimeHomeRemoteDataManagerInputProtocol?
 
+    func getDataList() {
+        
+    }
 }
 
 extension AnimeHomeInteractor: AnimeHomeRemoteDataManagerOutputProtocol {
+    func responseSuccess(success: Bool, aplResponse: APLResponse?) {
+        print("Información obtenida: \(success)")
+    }
     // TODO: Implement use case methods
 }

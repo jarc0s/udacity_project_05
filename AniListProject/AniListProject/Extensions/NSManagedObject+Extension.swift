@@ -90,6 +90,10 @@ struct ReflectionEntities {
             if let newValue = value as? Decimal {
                 return newValue
             }
+        case _ as NSString.Type:
+            if let newValue = value as? String {
+                return newValue
+            }
         default:
             return nil
         }
@@ -105,29 +109,69 @@ extension PageInfo {
         guard let types = ReflectionEntities.getTypesOfProperties(in: PageInfo.self) else { return }
         
         for (name, type) in types {
-            print(dict[name] ?? "no key present")
             if let value = ReflectionEntities.makeCast(value: dict[name] as Any, types: type) {
                 self.setValue(value, forKey: name)
             }
         }
-        print("setVAlues: \(self.description)")
-        
     }
 }
 
 extension Media {
-    func populateProperties(dictionary dict: [String:Any]) {
+    func populateProperties(dictionary dict: [String:Any], mTitle: MTitle, mCoverImage: MCoverImage) {
         //1. get all properties names and types
         
         guard let types = ReflectionEntities.getTypesOfProperties(in: Media.self) else { return }
         
         for (name, type) in types {
-            print(dict[name] ?? "no key present")
-            if let value = ReflectionEntities.makeCast(value: dict[name] as Any, types: type) {
-                self.setValue(value, forKey: name)
+            
+            if type is MTitle.Type {
+                mTitle.populateProperties(dictionary: dict[name] as! [String:Any])
+                self.setValue(mTitle, forKey: name)
+                continue
+            }
+            
+            if type is MCoverImage.Type {
+                mCoverImage.populateProperties(dictionary: dict[name] as! [String:Any])
+                self.setValue(mCoverImage, forKey: name)
+                continue
+            }
+            
+            if dict[name] != nil {
+                if let value = ReflectionEntities.makeCast(value: dict[name] as Any, types: type) {
+                    self.setValue(value, forKey: name)
+                }
             }
         }
-        print("setVAlues: \(self.description)")
+    }
+}
+
+
+extension MTitle {
+    func populateProperties(dictionary dict: [String:Any]) {
         
+        guard let types = ReflectionEntities.getTypesOfProperties(in: MTitle.self) else { return }
+        
+        for (name, type) in types {
+            if dict[name] != nil {
+                if let value = ReflectionEntities.makeCast(value: dict[name] as Any, types: type) {
+                    self.setValue(value, forKey: name)
+                }
+            }
+        }
+    }
+}
+
+extension MCoverImage {
+    func populateProperties(dictionary dict: [String:Any]) {
+        
+        guard let types = ReflectionEntities.getTypesOfProperties(in: MCoverImage.self) else { return }
+        
+        for (name, type) in types {
+            if dict[name] != nil {
+                if let value = ReflectionEntities.makeCast(value: dict[name] as Any, types: type) {
+                    self.setValue(value, forKey: name)
+                }
+            }
+        }
     }
 }

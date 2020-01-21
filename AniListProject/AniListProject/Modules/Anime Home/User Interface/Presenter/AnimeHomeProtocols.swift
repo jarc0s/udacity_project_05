@@ -37,6 +37,7 @@ protocol AnimeHomeInteractorInputProtocol: class {
     var presenter: AnimeHomeInteractorOutputProtocol? { get set }
     var localDatamanager: AnimeHomeLocalDataManagerInputProtocol? { get set }
     var remoteDatamanager: AnimeHomeRemoteDataManagerInputProtocol? { get set }
+    func getDataList()
 }
 
 protocol AnimeHomeDataManagerInputProtocol: class {
@@ -46,12 +47,15 @@ protocol AnimeHomeDataManagerInputProtocol: class {
 protocol AnimeHomeRemoteDataManagerInputProtocol: class {
     // INTERACTOR -> REMOTEDATAMANAGER
     var remoteRequestHandler: AnimeHomeRemoteDataManagerOutputProtocol? { get set }
+    func getDataListRemote()
 }
 
 protocol AnimeHomeRemoteDataManagerOutputProtocol: class {
     // REMOTEDATAMANAGER -> INTERACTOR
+    func responseSuccess(success: Bool, aplResponse: APLResponse?)
 }
 
 protocol AnimeHomeLocalDataManagerInputProtocol: class {
     // INTERACTOR -> LOCALDATAMANAGER
+    func storeAPLResponse(aplResponse: APLResponse)
 }

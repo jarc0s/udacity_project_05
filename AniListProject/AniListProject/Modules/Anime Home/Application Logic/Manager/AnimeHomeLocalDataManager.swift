@@ -9,6 +9,6 @@
 import Foundation
 
 class AnimeHomeLocalDataManager:AnimeHomeLocalDataManagerInputProtocol {
-    
-    
+    func storeAPLResponse(aplResponse: APLResponse) {
+    }
 }

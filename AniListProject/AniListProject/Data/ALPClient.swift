@@ -57,7 +57,13 @@ class ANPClient {
     }
     
     
-    class func getAnimeListUpcoming(completion:@escaping(Bool, Error?) -> Void ) {
-        
+    class func getAnimeListUpcoming(requestBody: ALPRequest, completion:@escaping(APLResponse?, Bool, Error?) -> Void ) {
+        _ = taskForPOSTRequest(url: Endpoints.globalPetition.url, responseType: APLResponse.self, body: requestBody){ response, error in
+            if let response = response {
+                completion(response, true, nil)
+            }else {
+                completion(nil, false, error)
+            }
+        }
     }
 }

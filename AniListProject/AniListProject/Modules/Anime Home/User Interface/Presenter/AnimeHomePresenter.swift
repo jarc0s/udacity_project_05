@@ -20,6 +20,7 @@ class AnimeHomePresenter  {
 extension AnimeHomePresenter: AnimeHomePresenterProtocol {
     // TODO: implement presenter methods
     func viewDidLoad() {
+        
     }
 }
 
