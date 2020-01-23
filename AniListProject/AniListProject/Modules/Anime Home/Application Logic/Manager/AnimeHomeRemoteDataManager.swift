@@ -72,8 +72,16 @@ class AnimeHomeRemoteDataManager:AnimeHomeRemoteDataManagerInputProtocol {
         }
         """
         
+        guard let query = ReadFiles.ReadQueryFromFile(withFileName: "file01", type: "txt") else {
+            return
+        }
+        
+        //print("query:\(queryStr.trimmingCharacters(in: .whitespacesAndNewlines))")
+        
+        print("query:\(query.trimmingCharacters(in: .whitespacesAndNewlines))")
+        
         let requestDict: [String : Any] = [
-                "type" : "Anime",
+                "type" : "ANIME",
                 "page" : 1,
                 "perPage" : 21,
                 "countryOfOrigin" : "JP",
@@ -91,6 +99,7 @@ class AnimeHomeRemoteDataManager:AnimeHomeRemoteDataManagerInputProtocol {
             print("response: \(response.dataResponse)")
             remoteRequestHandler?.responseSuccess(success: true, aplResponse: response)
         }
+        print(error?.localizedDescription)
         remoteRequestHandler?.responseSuccess(success: false, aplResponse: nil)
     }
     

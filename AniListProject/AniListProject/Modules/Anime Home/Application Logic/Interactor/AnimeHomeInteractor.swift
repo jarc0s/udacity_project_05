@@ -18,13 +18,14 @@ class AnimeHomeInteractor: AnimeHomeInteractorInputProtocol {
     var remoteDatamanager: AnimeHomeRemoteDataManagerInputProtocol?
 
     func getDataList() {
-        
+        remoteDatamanager?.getDataListRemote()
     }
 }
 
 extension AnimeHomeInteractor: AnimeHomeRemoteDataManagerOutputProtocol {
     func responseSuccess(success: Bool, aplResponse: APLResponse?) {
         print("Información obtenida: \(success)")
+        presenter?.dataStored(success: success)
     }
     // TODO: Implement use case methods
 }

@@ -18,6 +18,7 @@ class AnimeHomeView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
     }
 }
 

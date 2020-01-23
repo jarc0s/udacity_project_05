@@ -36,7 +36,7 @@ struct ALPRequest: Codable {
 }
 
 
-struct APLResponse: Codable {
+struct APLResponse: Decodable {
     var dataResponse: [String:Any]
 
     enum CodingKeys: String, CodingKey {

@@ -20,10 +20,13 @@ class AnimeHomePresenter  {
 extension AnimeHomePresenter: AnimeHomePresenterProtocol {
     // TODO: implement presenter methods
     func viewDidLoad() {
-        
+        interactor?.getDataList()
     }
 }
 
 extension AnimeHomePresenter: AnimeHomeInteractorOutputProtocol {
     // TODO: implement interactor output methods
+    func dataStored(success: Bool) {
+        print("data is stored: \(success)")
+    }
 }

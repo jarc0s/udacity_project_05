@@ -30,6 +30,7 @@ protocol AnimeHomePresenterProtocol: class {
 
 protocol AnimeHomeInteractorOutputProtocol: class {
 // INTERACTOR -> PRESENTER
+    func dataStored(success: Bool)
 }
 
 protocol AnimeHomeInteractorInputProtocol: class {

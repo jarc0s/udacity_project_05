@@ -47,7 +47,7 @@ class ANPClient {
             
             let decoder = JSONDecoder()
             do {
-                let responseObject = try decoder.decode(ResponseType.self, from: data)
+                let responseObject = try decoder.decode(responseType, from: data)
                 completion(responseObject, nil)
             } catch {
                 completion(nil, error)
