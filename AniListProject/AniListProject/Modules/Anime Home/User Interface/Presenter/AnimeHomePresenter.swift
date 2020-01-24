@@ -20,7 +20,7 @@ class AnimeHomePresenter  {
 extension AnimeHomePresenter: AnimeHomePresenterProtocol {
     // TODO: implement presenter methods
     func viewDidLoad() {
-        interactor?.getDataList()
+        interactor?.interactorGetDataList(byType: .TopMediaByYear(year: 2015))
     }
 }
 

@@ -38,7 +38,9 @@ protocol AnimeHomeInteractorInputProtocol: class {
     var presenter: AnimeHomeInteractorOutputProtocol? { get set }
     var localDatamanager: AnimeHomeLocalDataManagerInputProtocol? { get set }
     var remoteDatamanager: AnimeHomeRemoteDataManagerInputProtocol? { get set }
-    func getDataList()
+    
+    //Request Data List by query type
+    func interactorGetDataList(byType queryType: QueryTypeEnum)
 }
 
 protocol AnimeHomeDataManagerInputProtocol: class {
@@ -48,12 +50,14 @@ protocol AnimeHomeDataManagerInputProtocol: class {
 protocol AnimeHomeRemoteDataManagerInputProtocol: class {
     // INTERACTOR -> REMOTEDATAMANAGER
     var remoteRequestHandler: AnimeHomeRemoteDataManagerOutputProtocol? { get set }
-    func getDataListRemote()
+    
+    //Request data list by query type
+    func remoteManagerGetDataListRemote(byType queryType: QueryTypeEnum)
 }
 
 protocol AnimeHomeRemoteDataManagerOutputProtocol: class {
     // REMOTEDATAMANAGER -> INTERACTOR
-    func responseSuccess(success: Bool, aplResponse: APLResponse?)
+    func remoteResponseSuccess<ResponseType: Decodable>(success: Bool, aplResponse: ResponseType?)
 }
 
 protocol AnimeHomeLocalDataManagerInputProtocol: class {

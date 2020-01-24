@@ -10,22 +10,28 @@ import Foundation
 
 class AnimeHomeInteractor: AnimeHomeInteractorInputProtocol {
     
-    
-
     // MARK: Properties
     weak var presenter: AnimeHomeInteractorOutputProtocol?
     var localDatamanager: AnimeHomeLocalDataManagerInputProtocol?
     var remoteDatamanager: AnimeHomeRemoteDataManagerInputProtocol?
 
-    func getDataList() {
-        remoteDatamanager?.getDataListRemote()
+    func interactorGetDataList(byType queryType: QueryTypeEnum) {
+        remoteDatamanager?.remoteManagerGetDataListRemote(byType: queryType)
     }
 }
 
 extension AnimeHomeInteractor: AnimeHomeRemoteDataManagerOutputProtocol {
-    func responseSuccess(success: Bool, aplResponse: APLResponse?) {
+    
+    // TODO: Implement use case methods
+    func remoteResponseSuccess<ResponseType>(success: Bool, aplResponse: ResponseType?) {
         print("Información obtenida: \(success)")
         presenter?.dataStored(success: success)
+        if success {
+            //Store Information on core data
+            
+        }else {
+            //Report Error
+            
+        }
     }
-    // TODO: Implement use case methods
 }

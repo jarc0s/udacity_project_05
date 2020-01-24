@@ -11,7 +11,7 @@ import Foundation
 class AnimeHomeRemoteDataManager:AnimeHomeRemoteDataManagerInputProtocol {
     var remoteRequestHandler: AnimeHomeRemoteDataManagerOutputProtocol?
     
-    func getDataListRemote() {
+    func remoteManagerGetDataListRemote(byType queryType: QueryTypeEnum) {
         
         let queryStr = """
         query(
@@ -89,7 +89,7 @@ class AnimeHomeRemoteDataManager:AnimeHomeRemoteDataManagerInputProtocol {
                 "formatIn" : ["TV", "TV_SHORT", "MOVIE", "SPECIAL", "OVA", "ONA", "ONE_SHOT"]
             ]
         
-        let request = ALPRequest(query: queryStr, variables: requestDict)
+        let request = ALPRequest(query: query, variables: requestDict)
         
         ANPClient.getAnimeListUpcoming(requestBody: request, completion: handleGetListAnime(aplResponse:success:error:))
     }
@@ -97,10 +97,13 @@ class AnimeHomeRemoteDataManager:AnimeHomeRemoteDataManagerInputProtocol {
     private func handleGetListAnime(aplResponse: APLResponse?, success: Bool, error: Error?) {
         if let response = aplResponse {
             print("response: \(response.dataResponse)")
-            remoteRequestHandler?.responseSuccess(success: true, aplResponse: response)
+            remoteRequestHandler?.remoteResponseSuccess(success: true, aplResponse: response)
+        }else {
+            print(error?.localizedDescription)
+            remoteRequestHandler?.remoteResponseSuccess(success: false, aplResponse: APLResponse(dataResponse: [:]))
         }
-        print(error?.localizedDescription)
-        remoteRequestHandler?.responseSuccess(success: false, aplResponse: nil)
     }
+    
+    
     
 }
