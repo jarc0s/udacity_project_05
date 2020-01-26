@@ -14,7 +14,7 @@ class SplashWireFrame: SplashWireFrameProtocol {
     func presentHomeView(from view: SplashViewProtocol, withDataController: DataController) {
         
         let subModules = (
-            homeAnime: AnimeHomeWireFrame.createAnimeHomeModule(),
+            homeAnime: AnimeHomeWireFrame.createAnimeHomeModule(with: withDataController),
             homeManga: MangaHomeWireFrame.createMangaHomeModule()
             )
         

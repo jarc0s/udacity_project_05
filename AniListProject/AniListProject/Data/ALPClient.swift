@@ -34,7 +34,7 @@ class ANPClient {
         }
     }
     
-    class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType,  fixData: Bool? = nil, completion: @escaping(ResponseType?, Error?) -> Void){
+    class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType,  fixData: Bool? = nil, completion: @escaping(ResponseType?, Error?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -57,12 +57,12 @@ class ANPClient {
     }
     
     
-    class func getAnimeListUpcoming(requestBody: ALPRequest, completion:@escaping(APLResponse?, Bool, Error?) -> Void ) {
-        _ = taskForPOSTRequest(url: Endpoints.globalPetition.url, responseType: APLResponse.self, body: requestBody){ response, error in
+    class func getMediaTypeList(queryType: QueryTypeEnum, requestBody: ALPRequest, completion:@escaping(APLResponse?, Bool, Error?, QueryTypeEnum) -> Void ) {
+        taskForPOSTRequest(url: Endpoints.globalPetition.url, responseType: APLResponse.self, body: requestBody){ response, error in
             if let response = response {
-                completion(response, true, nil)
+                completion(response, true, nil, queryType)
             }else {
-                completion(nil, false, error)
+                completion(nil, false, error, queryType)
             }
         }
     }

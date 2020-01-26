@@ -16,7 +16,7 @@ protocol AnimeHomeViewProtocol: class {
 
 protocol AnimeHomeWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
-    static func createAnimeHomeModule() -> UIViewController
+    static func createAnimeHomeModule(with dataController: DataController) -> UIViewController
 }
 
 protocol AnimeHomePresenterProtocol: class {
@@ -62,5 +62,8 @@ protocol AnimeHomeRemoteDataManagerOutputProtocol: class {
 
 protocol AnimeHomeLocalDataManagerInputProtocol: class {
     // INTERACTOR -> LOCALDATAMANAGER
-    func storeAPLResponse(aplResponse: APLResponse)
+    func storeAPLResponse<ResponseType: Decodable>(aplResponse: ResponseType, completion: @escaping(_ success: Bool) -> Void)
+    
+    var dataController: DataController? { get set }
+    func getDataManager() -> DataController?
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D2C8FEE23DCD112009152C9 /* HandleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C8FED23DCD112009152C9 /* HandleResponse.swift */; };
 		0D666C4F23CA510F002FDB94 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D666C4823CA510F002FDB94 /* SplashInteractor.swift */; };
 		0D666C5023CA510F002FDB94 /* SplashLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D666C4923CA510F002FDB94 /* SplashLocalDataManager.swift */; };
 		0D666C5123CA510F002FDB94 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D666C4A23CA510F002FDB94 /* SplashPresenter.swift */; };
@@ -80,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D2C8FED23DCD112009152C9 /* HandleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleResponse.swift; sourceTree = "<group>"; };
 		0D666C4823CA510F002FDB94 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		0D666C4923CA510F002FDB94 /* SplashLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashLocalDataManager.swift; sourceTree = "<group>"; };
 		0D666C4A23CA510F002FDB94 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				88F2495B23CD38BB008D7107 /* ALPRequest.swift */,
 				8858FAEB23CF6EEC00311701 /* PageInfo.swift */,
 				889D122323DA4DE00051F534 /* QueryTypeEnum.swift */,
+				0D2C8FED23DCD112009152C9 /* HandleResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				0D666C4F23CA510F002FDB94 /* SplashInteractor.swift in Sources */,
 				0D666C5323CA510F002FDB94 /* SplashRemoteDataManager.swift in Sources */,
 				0DFB952223CABC07001D5767 /* HomePresenter.swift in Sources */,
+				0D2C8FEE23DCD112009152C9 /* HandleResponse.swift in Sources */,
 				0D666C6F23CA5A2F002FDB94 /* DataController.swift in Sources */,
 				0DFB953D23CAE456001D5767 /* AnimeHomePresenter.swift in Sources */,
 				0D666C5523CA510F002FDB94 /* SplashWireFrame.swift in Sources */,

@@ -252,4 +252,25 @@ class AniListProjectTests: XCTestCase {
         XCTAssert(true)
     }
     
+    func increaseCurrentPage() {
+        DataSource.increaseCurrentPage(to: .Releases, context: dataController.viewContext) { success in
+            if success {
+                XCTAssert(true)
+            }else {
+                XCTFail()
+            }
+        }
+    }
+    
+    
+    func retrievePageInfo() {
+        DataSource.retrievePageInfo(to: .Releases, context: dataController.viewContext) { pageInfo in
+            if let pageInfo = pageInfo {
+                XCTAssert(pageInfo.currentPage > 1, "No se incremento el current page")
+            }else {
+                XCTFail()
+            }
+        }
+    }
+    
 }

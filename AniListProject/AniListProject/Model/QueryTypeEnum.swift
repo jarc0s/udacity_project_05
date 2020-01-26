@@ -14,6 +14,19 @@ public enum QueryTypeEnum {
     case TopMediaByYearFinished(year: Int)
     case TopMediaBySeasonYear(year: Int, season: SeasonTypeEnum)
     
+    var queryTypeDesc: String {
+        switch self {
+        case .Releases:
+            return "Releases"
+        case .TopMediaByYear(_):
+            return "TopMediaByYear"
+        case .TopMediaByYearFinished(_):
+            return "TopMediaByYearFinished"
+        case .TopMediaBySeasonYear(_, _):
+            return "TopMediaBySeasonYear"
+        }
+    }
+    
 }
 
 

@@ -28,10 +28,14 @@ extension AnimeHomeInteractor: AnimeHomeRemoteDataManagerOutputProtocol {
         presenter?.dataStored(success: success)
         if success {
             //Store Information on core data
-            
+            if let response = aplResponse as? APLResponse {
+                localDatamanager?.storeAPLResponse(aplResponse: response){ success in
+                    self.presenter?.dataStored(success: success)
+                }
+            }
         }else {
             //Report Error
-            
         }
     }
 }
+

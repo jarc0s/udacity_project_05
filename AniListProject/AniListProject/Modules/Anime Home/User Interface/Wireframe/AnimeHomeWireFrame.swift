@@ -11,7 +11,7 @@ import UIKit
 
 class AnimeHomeWireFrame: AnimeHomeWireFrameProtocol {
 
-    class func createAnimeHomeModule() -> UIViewController {
+    class func createAnimeHomeModule(with dataController: DataController) -> UIViewController {
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AnimeHomeView")
         if let view = viewController as? AnimeHomeView {
             let presenter: AnimeHomePresenterProtocol & AnimeHomeInteractorOutputProtocol = AnimeHomePresenter()
