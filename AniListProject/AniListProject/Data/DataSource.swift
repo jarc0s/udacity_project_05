@@ -122,5 +122,9 @@ struct DataSource {
             completion(nil)
         }
     }
+    
+    static func storeMedia(to queryType: QueryTypeEnum, aplResponse: APLResponse, context: NSManagedObjectContext, completion:@escaping(Bool) -> Void ) {
+        
+    }
 }
 

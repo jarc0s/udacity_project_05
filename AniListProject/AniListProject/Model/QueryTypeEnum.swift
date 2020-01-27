@@ -36,3 +36,8 @@ public enum SeasonTypeEnum: String {
     case Summer = "SUMMER"
     case Fall = "FALL"
 }
+
+public enum MediaTypeEnum: String {
+    case Anime = "ANIME"
+    case Manga = "MANGA"
+}

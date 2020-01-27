@@ -124,11 +124,11 @@ class AniListProjectTests: XCTestCase {
             print("\(String(data: data, encoding: .utf8) ?? "")")
             XCTAssert(true)
         }*/
-        ANPClient.getAnimeListUpcoming(requestBody: request) { response, success, error in
-            if let responseData = response?.dataResponse {
-                print(responseData)
-            }
-        }
+//        ANPClient.getAnimeListUpcoming(requestBody: request) { response, success, error in
+//            if let responseData = response?.dataResponse {
+//                print(responseData)
+//            }
+//        }
     }
 
     
@@ -166,6 +166,7 @@ class AniListProjectTests: XCTestCase {
                     return
                 }
                 print(resultsrrr)
+                XCTAssert(!resultsrrr.isEmpty)
             }
         }
     }
@@ -220,7 +221,7 @@ class AniListProjectTests: XCTestCase {
     
     func testSaveInfoPageInfo(){
         let query = QueryType(context: dataController.viewContext)
-        query.queryType = "TopAllTimes"
+        query.queryType = QueryTypeEnum.Releases.queryTypeDesc
         try? dataController.viewContext.save()
         
         guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
@@ -252,7 +253,7 @@ class AniListProjectTests: XCTestCase {
         XCTAssert(true)
     }
     
-    func increaseCurrentPage() {
+    func testIncreaseCurrentPage() {
         DataSource.increaseCurrentPage(to: .Releases, context: dataController.viewContext) { success in
             if success {
                 XCTAssert(true)
@@ -263,9 +264,10 @@ class AniListProjectTests: XCTestCase {
     }
     
     
-    func retrievePageInfo() {
+    func testRetrievePageInfo() {
         DataSource.retrievePageInfo(to: .Releases, context: dataController.viewContext) { pageInfo in
             if let pageInfo = pageInfo {
+                print(pageInfo)
                 XCTAssert(pageInfo.currentPage > 1, "No se incremento el current page")
             }else {
                 XCTFail()

@@ -19,25 +19,36 @@ class AnimeHomeLocalDataManager:AnimeHomeLocalDataManagerInputProtocol {
     
     func storeAPLResponse<ResponseType>(aplResponse: ResponseType, completion: @escaping (Bool) -> Void) where ResponseType : Decodable {
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
         guard let aplResponseModel = aplResponse as? APLResponse else {
             completion(false)
             return
         }
+        
+        DataSource.storePageInfo(to: .Releases, aplResponse: aplResponseModel, context: dataController!.viewContext) { success in
+            if success {
+                //Store media
+                
+            }
+            else {
+                return
+            }
+        }
+        
+    
+        
+        
+        
+        
+        
         
         guard let aplPage = aplResponseModel.dataResponse["Page"] as! [String:Any]?,
             let pageInfo = aplPage["pageInfo"] as! [String:Any]? else {
             completion(false)
             return
         }
+        
+        
+        
         
         
         
