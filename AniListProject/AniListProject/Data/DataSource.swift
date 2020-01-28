@@ -48,7 +48,7 @@ struct DataSource {
         let predicate = NSPredicate(format: "queryType == %@", queryType.queryTypeDesc)
         let queryTypeRetrieve = retrieve(entityClass: QueryType.self, context: context, predicate: predicate)
         
-        guard let queryTypes = queryTypeRetrieve else {
+        guard let queryTypes = queryTypeRetrieve, !queryTypes.isEmpty else {
             if store(queryType: queryType, context: context) {
                 storePageInfo(to: queryType, aplResponse: aplResponse, context: context) { success in
                     completion(success)
@@ -92,7 +92,7 @@ struct DataSource {
         
         let queryTypeModel = queryTypes.last!
         
-        var currentPageInfo = queryTypeModel.pageInfo!
+        let currentPageInfo = queryTypeModel.pageInfo!
         currentPageInfo.currentPage = currentPageInfo.currentPage + 1
         
         
@@ -124,6 +124,120 @@ struct DataSource {
     }
     
     static func storeMedia(to queryType: QueryTypeEnum, aplResponse: APLResponse, context: NSManagedObjectContext, completion:@escaping(Bool) -> Void ) {
+        
+        //1. Find and entity with taht queryTypeEnum
+        let predicate = NSPredicate(format: "queryType == %@", queryType.queryTypeDesc)
+        let queryTypeRetrieve = retrieve(entityClass: QueryType.self, context: context, predicate: predicate)
+        
+        guard let queryTypes = queryTypeRetrieve else {
+            if store(queryType: queryType, context: context) {
+                storeMedia(to: queryType, aplResponse: aplResponse, context: context) { success in
+                    completion(success)
+                }
+            }else {
+                completion(false)
+            }
+            return
+        }
+        
+        
+        let queryTypeModel = queryTypes.last
+        
+        guard let aplPage = aplResponse.dataResponse["Page"] as! [String:Any]?,
+            let media = aplPage["media"] as! [Any]? else {
+            completion(false)
+            return
+        }
+        
+        var storedSuccessfully = true
+        var dataStoredCount = 0
+        for mediaDic in media {
+            let mediaModel = Media(context: context)
+            let titleModel = MTitle(context: context)
+            let coverImageModel = MCoverImage(context: context)
+            mediaModel.populateProperties(dictionary: mediaDic as! [String : Any], mTitle: titleModel, mCoverImage: coverImageModel)
+            titleModel.media = mediaModel
+            coverImageModel.media = mediaModel
+            mediaModel.queryType = queryTypeModel
+            if (try? context.save()) != nil {
+                dataStoredCount += 1
+                continue
+            }else {
+                storedSuccessfully = false
+            }
+        }
+        
+        
+        if dataStoredCount == 0 && !storedSuccessfully {
+            completion(false)
+            return
+        }
+        
+        completion(true)
+    }
+    
+    static func retrieveMedia(to queryType: QueryTypeEnum, context: NSManagedObjectContext, completion:@escaping([Media]?) -> Void) {
+        
+        //1. Find and entity with taht queryTypeEnum
+        let predicate = NSPredicate(format: "queryType == %@", queryType.queryTypeDesc)
+        let queryTypeRetrieve = retrieve(entityClass: QueryType.self, context: context, predicate: predicate)
+        
+        guard let queryTypes = queryTypeRetrieve else {
+            completion(nil)
+            return
+        }
+        
+        let queryTypeModel = queryTypes.last!
+        
+        if let media = queryTypeModel.media {
+            completion(media.toArray())
+        }else {
+            completion(nil)
+        }
+        
+    }
+    
+    
+    static func deleteQueryType(to queryType:QueryTypeEnum, context: NSManagedObjectContext, completion:@escaping(Bool) -> Void) {
+        //1. Find and entity with taht queryTypeEnum
+        let predicate = NSPredicate(format: "queryType == %@", queryType.queryTypeDesc)
+        let queryTypeRetrieve = retrieve(entityClass: QueryType.self, context: context, predicate: predicate)
+        
+        guard let queryTypes = queryTypeRetrieve else {
+            completion(false)
+            return
+        }
+        
+        for queryTypeEntity in queryTypes {
+            context.delete(queryTypeEntity)
+        }
+        
+        do {
+            try context.save()
+            completion(false)
+        }catch {
+            completion(true)
+        }
+    }
+    
+    static func deleteAllContentQueryType(context: NSManagedObjectContext, completion:@escaping(Bool) -> Void) {
+        let queryTypeRetrieve = retrieve(entityClass: QueryType.self, context: context)
+        
+        guard let queryTypes = queryTypeRetrieve else {
+            completion(false)
+            return
+        }
+        
+        for queryTypeEntity in queryTypes {
+            context.delete(queryTypeEntity)
+        }
+        
+        do {
+            try context.save()
+            completion(false)
+        }catch {
+            completion(true)
+        }
         
     }
 }

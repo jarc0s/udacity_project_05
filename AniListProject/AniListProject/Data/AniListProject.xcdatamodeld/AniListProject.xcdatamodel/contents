@@ -39,13 +39,13 @@
     <entity name="QueryType" representedClassName="QueryType" syncable="YES" codeGenerationType="class">
         <attribute name="mediaType" optional="YES" attributeType="String"/>
         <attribute name="queryType" optional="YES" attributeType="String"/>
-        <relationship name="media" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Media" inverseName="queryType" inverseEntity="Media"/>
-        <relationship name="pageInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PageInfo" inverseName="queryType" inverseEntity="PageInfo"/>
+        <relationship name="media" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Media" inverseName="queryType" inverseEntity="Media"/>
+        <relationship name="pageInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="PageInfo" inverseName="queryType" inverseEntity="PageInfo"/>
     </entity>
     <elements>
         <element name="MCoverImage" positionX="-117.3515625" positionY="-391.1484375" width="128" height="163"/>
         <element name="Media" positionX="-348.11328125" positionY="-187.703125" width="128" height="193"/>
-        <element name="MTitle" positionX="-76.12890625" positionY="-233.328125" width="128" height="103"/>
+        <element name="MTitle" positionX="-6.328125" positionY="-142.578125" width="128" height="103"/>
         <element name="PageInfo" positionX="-238.875" positionY="55.546875" width="128" height="133"/>
         <element name="QueryType" positionX="-647.15625" positionY="-87.484375" width="148.125" height="103"/>
     </elements>

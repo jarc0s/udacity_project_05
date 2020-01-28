@@ -50,6 +50,7 @@
 		8827E2CC23CCFB1800F48251 /* ALPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E2CB23CCFB1800F48251 /* ALPClient.swift */; };
 		8827E2D323CD221500F48251 /* ReadFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E2D223CD221500F48251 /* ReadFiles.swift */; };
 		8827E2D623CD273E00F48251 /* file01.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8827E2D523CD273E00F48251 /* file01.txt */; };
+		882F53CD23E0A8A70016DB26 /* NSSet+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882F53CC23E0A8A70016DB26 /* NSSet+extension.swift */; };
 		8858FAEC23CF6EEC00311701 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8858FAEB23CF6EEC00311701 /* PageInfo.swift */; };
 		889D122423DA4DE00051F534 /* QueryTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889D122323DA4DE00051F534 /* QueryTypeEnum.swift */; };
 		88BCD32623D3863000BAA052 /* NSManagedObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCD32523D3863000BAA052 /* NSManagedObject+Extension.swift */; };
@@ -130,6 +131,7 @@
 		8827E2CB23CCFB1800F48251 /* ALPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPClient.swift; sourceTree = "<group>"; };
 		8827E2D223CD221500F48251 /* ReadFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFiles.swift; sourceTree = "<group>"; };
 		8827E2D523CD273E00F48251 /* file01.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = file01.txt; sourceTree = "<group>"; };
+		882F53CC23E0A8A70016DB26 /* NSSet+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSet+extension.swift"; sourceTree = "<group>"; };
 		8858FAEB23CF6EEC00311701 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
 		889D122323DA4DE00051F534 /* QueryTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTypeEnum.swift; sourceTree = "<group>"; };
 		88BCD32523D3863000BAA052 /* NSManagedObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extension.swift"; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 			children = (
 				88BCD32523D3863000BAA052 /* NSManagedObject+Extension.swift */,
 				88C1D7D023D6168900A9CED9 /* String+Extension.swift */,
+				882F53CC23E0A8A70016DB26 /* NSSet+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				0DFB955423CAE5CB001D5767 /* MangaHomeLocalDataManager.swift in Sources */,
 				889D122423DA4DE00051F534 /* QueryTypeEnum.swift in Sources */,
 				0DFB952123CABC07001D5767 /* HomeLocalDataManager.swift in Sources */,
+				882F53CD23E0A8A70016DB26 /* NSSet+extension.swift in Sources */,
 				0DFB952323CABC07001D5767 /* HomeProtocols.swift in Sources */,
 				88BCD32623D3863000BAA052 /* NSManagedObject+Extension.swift in Sources */,
 				0D666C5223CA510F002FDB94 /* SplashProtocols.swift in Sources */,

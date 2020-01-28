@@ -42,103 +42,12 @@ class AniListProjectTests: XCTestCase {
         print(query ?? "empty")
         XCTAssert((query != nil), "No exist the file")
     }
-    
-    func testJsonCodable() {
-        
-        
-        var queryStr = """
-        query(
-        $type:MediaType
-        $page:Int!
-        $status:MediaStatus
-        $perPage:Int!
-        $sort:[MediaSort]
-        $countryOfOrigin:CountryCode
-        #$seasonYear:Int!
-        $season:MediaSeason
-        $formatIn:[MediaFormat]
-        ) {
-        Page(
-        page:$page
-        perPage:$perPage
-        ){
-        pageInfo{
-        total
-        currentPage
-        hasNextPage
-        lastPage
-        perPage
-        }
-        media(
-        type: $type
-        status : $status
-        sort: $sort
-        countryOfOrigin: $countryOfOrigin
-        #seasonYear: $seasonYear
-        season:$season
-        format_in:$formatIn
-        ){
-        id
-        title {
-        romaji
-        english
-        native
-        }
-        startDate {
-        year
-        month
-        day
-        }
-        episodes
-        duration
-        coverImage {
-        large
-        medium
-        color
-        }
-        bannerImage
-        meanScore
-        countryOfOrigin
-        season
-        }
-        }
-        }
-        """
-        
-        guard let query = ReadFiles.ReadQueryFromFile(withFileName: "file01", type: "txt") else {
-            return
-        }
-        
-        let requestDict: [String : Any] = [
-                "type" : "Anime",
-                "page" : 1,
-                "perPage" : 21,
-                "countryOfOrigin" : "JP",
-                "status" : "NOT_YET_RELEASED",
-                "formatIn" : ["TV", "TV_SHORT", "MOVIE", "SPECIAL", "OVA", "ONA", "ONE_SHOT"]
-            ]
-        
-        let request = ALPRequest(query: queryStr, variables: requestDict)
-        
-        /*if let data = try? JSONEncoder().encode(request) {
-            print("\(String(data: data, encoding: .utf8) ?? "")")
-            XCTAssert(true)
-        }*/
-//        ANPClient.getAnimeListUpcoming(requestBody: request) { response, success, error in
-//            if let responseData = response?.dataResponse {
-//                print(responseData)
-//            }
-//        }
-    }
 
-    
     func testJsonDecodeResponse() {
         guard let response = ReadFiles.ReadQueryFromFile(withFileName: "file02", type: "txt"), let data = response.data(using: .utf8) else {
             XCTFail()
             return
         }
-        
-        
         
         if let aplResponse = try? JSONDecoder().decode(APLResponse.self, from: data) {
             if let aplPage = aplResponse.dataResponse["Page"] as! [String:Any]? {
@@ -147,30 +56,66 @@ class AniListProjectTests: XCTestCase {
                         return
                 }
                 
-                let pageInfoModel = PageInfo(context: dataController.viewContext)
-                pageInfoModel.populateProperties(dictionary: pageInfo)
-                
-                guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+                guard let media = aplPage["media"] as! [Any]? else {
                     XCTFail()
                     return
                 }
                 
-                
-                let lastQuery = results.last
-                pageInfoModel.queryType = lastQuery
-                
-                try? dataController.viewContext.save()
-                
-                guard let resultsrrr = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+                if (pageInfo["currentPage"] as? Int) == nil {
                     XCTFail()
-                    return
+                }else if media.isEmpty {
+                    XCTFail()
+                }else {
+                    XCTAssert(true)
                 }
-                print(resultsrrr)
-                XCTAssert(!resultsrrr.isEmpty)
             }
         }
     }
     
+    func testStorePageInfoToQueryType() {
+        guard let response = ReadFiles.ReadQueryFromFile(withFileName: "file02", type: "txt"), let data = response.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        if let aplResponse = try? JSONDecoder().decode(APLResponse.self, from: data) {
+            DataSource.storePageInfo(to: .TopMediaByYearFinished(year: 1990), aplResponse: aplResponse, context: dataController.viewContext) { succes in
+                if succes {
+                    XCTAssert(true)
+                }else {
+                    XCTFail()
+                }
+            }
+            
+//            if let aplPage = aplResponse.dataResponse["Page"] as! [String:Any]? {
+//                guard let pageInfo = aplPage["pageInfo"] as! [String: Any]? else {
+//                        XCTFail()
+//                        return
+//                }
+//
+//                let pageInfoModel = PageInfo(context: dataController.viewContext)
+//                pageInfoModel.populateProperties(dictionary: pageInfo)
+//
+//                guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+//                    XCTFail()
+//                    return
+//                }
+//
+//
+//                let lastQuery = results.last
+//                pageInfoModel.queryType = lastQuery
+//
+//                try? dataController.viewContext.save()
+//
+//                guard let resultsrrr = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+//                    XCTFail()
+//                    return
+//                }
+//                print(resultsrrr)
+//                XCTAssert(!resultsrrr.isEmpty)
+//            }
+        }
+    }
     
     func testSaveMediaArrayToQueryType(){
         guard let response = ReadFiles.ReadQueryFromFile(withFileName: "file02", type: "txt"), let data = response.data(using: .utf8) else {
@@ -178,48 +123,54 @@ class AniListProjectTests: XCTestCase {
             return
         }
         
-        guard let aplResponse = try? JSONDecoder().decode(APLResponse.self, from: data),
-              let aplPage = aplResponse.dataResponse["Page"] as! [String:Any]?,
-              let media = aplPage["media"] as! [Any]? else {
+        guard let aplResponse = try? JSONDecoder().decode(APLResponse.self, from: data) else {
             XCTFail()
             return
         }
         
-        guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
-            XCTFail()
-            return
+        DataSource.storeMedia(to: .Releases, aplResponse: aplResponse, context: dataController.viewContext) { success in
+            if success {
+                XCTAssert(true)
+            }else {
+                XCTFail()
+            }
         }
         
-        let lastQuery = results.last
-        
-        
-        for mediaDic in media {
-            let mediaModel = Media(context: dataController.viewContext)
-            let titleModel = MTitle(context: dataController.viewContext)
-            let coverImageModel = MCoverImage(context: dataController.viewContext)
-            mediaModel.populateProperties(dictionary: mediaDic as! [String : Any], mTitle: titleModel, mCoverImage: coverImageModel)
-            titleModel.media = mediaModel
-            coverImageModel.media = mediaModel
-            mediaModel.queryType = lastQuery
-            try? dataController.viewContext.save()
-        }
-        
-        guard let resultsN = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
-            XCTFail()
-            return
-        }
-        
-        let lastQ = resultsN.last
-        print("last?.pageInfo?.currentPage::::: \(lastQ?.pageInfo?.currentPage ?? 0)")
-        print("last?.media?.count::::: \(lastQ?.media?.count ?? 0)")
-        for case let mediaM as Media in lastQ!.media! {
-            print("mediaM.coverImage?.medium ::::: \(mediaM.coverImage?.medium ?? "")")
-        }
-        
-        XCTAssert(true)
+//        guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+//            XCTFail()
+//            return
+//        }
+//
+//        let lastQuery = results.last
+//
+//
+//        for mediaDic in media {
+//            let mediaModel = Media(context: dataController.viewContext)
+//            let titleModel = MTitle(context: dataController.viewContext)
+//            let coverImageModel = MCoverImage(context: dataController.viewContext)
+//            mediaModel.populateProperties(dictionary: mediaDic as! [String : Any], mTitle: titleModel, mCoverImage: coverImageModel)
+//            titleModel.media = mediaModel
+//            coverImageModel.media = mediaModel
+//            mediaModel.queryType = lastQuery
+//            try? dataController.viewContext.save()
+//        }
+//
+//        guard let resultsN = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
+//            XCTFail()
+//            return
+//        }
+//
+//        let lastQ = resultsN.last
+//        print("last?.pageInfo?.currentPage::::: \(lastQ?.pageInfo?.currentPage ?? 0)")
+//        print("last?.media?.count::::: \(lastQ?.media?.count ?? 0)")
+//        for case let mediaM as Media in lastQ!.media! {
+//            print("mediaM.coverImage?.medium ::::: \(mediaM.coverImage?.medium ?? "")")
+//        }
+//
+//        XCTAssert(true)
     }
     
-    func testSaveInfoPageInfo(){
+    func testSaveQueryType(){
         let query = QueryType(context: dataController.viewContext)
         query.queryType = QueryTypeEnum.Releases.queryTypeDesc
         try? dataController.viewContext.save()
@@ -233,7 +184,6 @@ class AniListProjectTests: XCTestCase {
         XCTAssert(true)
     }
     
-    
     func testReadAllQuerTypesStored() {
         
         guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
@@ -246,13 +196,6 @@ class AniListProjectTests: XCTestCase {
         XCTAssert(!results.isEmpty, "Consulta vacia")
     }
     
-    
-    func testEntityMapping() {
-        
-        print(#function)
-        XCTAssert(true)
-    }
-    
     func testIncreaseCurrentPage() {
         DataSource.increaseCurrentPage(to: .Releases, context: dataController.viewContext) { success in
             if success {
@@ -262,7 +205,6 @@ class AniListProjectTests: XCTestCase {
             }
         }
     }
-    
     
     func testRetrievePageInfo() {
         DataSource.retrievePageInfo(to: .Releases, context: dataController.viewContext) { pageInfo in
@@ -275,4 +217,63 @@ class AniListProjectTests: XCTestCase {
         }
     }
     
+    func testStoreMediaInfo() {
+        guard let response = ReadFiles.ReadQueryFromFile(withFileName: "file02", type: "txt"), let data = response.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        guard let aplResponse = try? JSONDecoder().decode(APLResponse.self, from: data) else {
+            XCTFail()
+            return
+        }
+        
+        DataSource.storeMedia(to: .Releases, aplResponse: aplResponse, context: dataController.viewContext) { success in
+            if success {
+                XCTAssert(true)
+            }else {
+                XCTFail()
+            }
+        }
+    }
+    
+    func testRetrieveMediaInfo() {
+        DataSource.retrieveMedia(to: .Releases, context: dataController.viewContext) { mediaArray in
+            if let mediaArray = mediaArray {
+                for media in mediaArray {
+                    print(media.title?.native ?? "No title")
+                }
+                XCTAssert(true)
+            }else {
+                XCTFail()
+            }
+        }
+    }
+    
+    func testDeleteAllQueryTypes() {
+        DataSource.deleteQueryType(to: .TopMediaByYearFinished(year: 1990), context: dataController.viewContext) { success in
+            if success {
+                XCTAssert(true)
+            }else {
+                XCTFail()
+            }
+        }
+    }
+    
+    func testRetrieveAllPageInfo() {
+        let pageInfoArray = DataSource.retrieve(entityClass: PageInfo.self, context: dataController.viewContext)
+        
+        guard let pageInfoA = pageInfoArray else {
+            XCTFail()
+            return
+        }
+        
+        print("pageInfoA.count: \(pageInfoA.count)")
+        
+        XCTAssert(!pageInfoA.isEmpty, "No hay contenido en pageInfoA")
+    }
+    
+    func DeleteAllPageInfo() {
+        DataSource.deleteAllContent(context: <#T##NSManagedObjectContext#>, completion: <#T##(Bool) -> Void#>)
+    }
 }

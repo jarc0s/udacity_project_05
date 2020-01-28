@@ -27,62 +27,18 @@ class AnimeHomeLocalDataManager:AnimeHomeLocalDataManagerInputProtocol {
         DataSource.storePageInfo(to: .Releases, aplResponse: aplResponseModel, context: dataController!.viewContext) { success in
             if success {
                 //Store media
-                
+                DataSource.storeMedia(to: .Releases, aplResponse: aplResponseModel, context: self.dataController!.viewContext) { success in
+                    if success {
+                        completion(true)
+                    }else {
+                        completion(false)
+                    }
+                }
             }
             else {
-                return
+                completion(false)
             }
         }
-        
-    
-        
-        
-        
-        
-        
-        
-        guard let aplPage = aplResponseModel.dataResponse["Page"] as! [String:Any]?,
-            let pageInfo = aplPage["pageInfo"] as! [String:Any]? else {
-            completion(false)
-            return
-        }
-        
-        
-        
-        
-        
-        
-//        if let aplPage = aplResponseModel.dataResponse["Page"] as! [String:Any]? {
-//                guard let pageInfo = aplPage["pageInfo"] as! [String: Any]? else {
-//                    completion(false)
-//                    return
-//                }
-//
-//                let pageInfoModel = PageInfo(context: dataController.viewContext)
-//                pageInfoModel.populateProperties(dictionary: pageInfo)
-//
-//                guard let results = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
-//                    XCTFail()
-//                    return
-//                }
-//
-//
-//                let lastQuery = results.last
-//                pageInfoModel.queryType = lastQuery
-//
-//                try? dataController.viewContext.save()
-//
-//                guard let resultsrrr = DataSource.retrieve(entityClass: QueryType.self, context: dataController.viewContext) else {
-//                    XCTFail()
-//                    return
-//                }
-//                print(resultsrrr)
-//            }
-//
-//
-        
-        
-        
-        completion(true)
+        completion(false)
     }
 }
