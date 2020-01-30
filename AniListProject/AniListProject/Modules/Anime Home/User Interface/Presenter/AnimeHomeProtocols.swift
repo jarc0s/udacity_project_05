@@ -12,6 +12,7 @@ import UIKit
 protocol AnimeHomeViewProtocol: class {
     // PRESENTER -> VIEW
     var presenter: AnimeHomePresenterProtocol? { get set }
+    func showMediaType(_ media: [Media])
 }
 
 protocol AnimeHomeWireFrameProtocol: class {

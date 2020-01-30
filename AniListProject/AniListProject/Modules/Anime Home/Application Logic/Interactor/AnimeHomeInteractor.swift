@@ -25,7 +25,7 @@ extension AnimeHomeInteractor: AnimeHomeRemoteDataManagerOutputProtocol {
     // TODO: Implement use case methods
     func remoteResponseSuccess<ResponseType>(success: Bool, aplResponse: ResponseType?) {
         print("Información obtenida: \(success)")
-        presenter?.dataStored(success: success)
+        //presenter?.dataStored(success: success)
         if success {
             //Store Information on core data
             if let response = aplResponse as? APLResponse {

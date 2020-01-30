@@ -38,7 +38,7 @@ class AnimeHomeRemoteDataManager:AnimeHomeRemoteDataManagerInputProtocol {
             print("response: \(response.dataResponse)")
             remoteRequestHandler?.remoteResponseSuccess(success: true, aplResponse: response)
         }else {
-            print(error?.localizedDescription)
+            print("errorrorororor:  \(error?.localizedDescription)")
             remoteRequestHandler?.remoteResponseSuccess(success: false, aplResponse: nil as APLResponse?)
         }
     }

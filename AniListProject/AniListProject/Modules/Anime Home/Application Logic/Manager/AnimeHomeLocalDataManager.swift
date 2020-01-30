@@ -19,12 +19,14 @@ class AnimeHomeLocalDataManager:AnimeHomeLocalDataManagerInputProtocol {
     
     func storeAPLResponse<ResponseType>(aplResponse: ResponseType, completion: @escaping (Bool) -> Void) where ResponseType : Decodable {
         
-        guard let aplResponseModel = aplResponse as? APLResponse else {
+        guard let aplResponseModel = aplResponse as? APLResponse, let dataControllet = dataController else {
             completion(false)
             return
         }
         
-        DataSource.storePageInfo(to: .Releases, aplResponse: aplResponseModel, context: dataController!.viewContext) { success in
+        
+        
+        DataSource.storePageInfo(to: .Releases, aplResponse: aplResponseModel, context: dataControllet.viewContext) { success in
             if success {
                 //Store media
                 DataSource.storeMedia(to: .Releases, aplResponse: aplResponseModel, context: self.dataController!.viewContext) { success in

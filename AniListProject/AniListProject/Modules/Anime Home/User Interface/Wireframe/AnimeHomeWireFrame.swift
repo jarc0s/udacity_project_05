@@ -27,6 +27,7 @@ class AnimeHomeWireFrame: AnimeHomeWireFrameProtocol {
             interactor.presenter = presenter
             interactor.localDatamanager = localDataManager
             interactor.remoteDatamanager = remoteDataManager
+            localDataManager.dataController = dataController
             remoteDataManager.remoteRequestHandler = interactor
             
             return viewController
