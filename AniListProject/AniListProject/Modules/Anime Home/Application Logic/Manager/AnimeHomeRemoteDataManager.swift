@@ -30,16 +30,16 @@ class AnimeHomeRemoteDataManager:AnimeHomeRemoteDataManagerInputProtocol {
         
         let request = ALPRequest(query: query, variables: requestDict)
         
-        ANPClient.getMediaTypeList(queryType: queryType, requestBody: request, completion: handleGetListMediaType(aplResponse:success:error:queryType:))
+        ANPClient.getMediaTypeList(queryType: queryType, requestBody: request, completion: handleGetListMediaType(for:aplResponse:success:error:queryType:))
     }
     
-    private func handleGetListMediaType(aplResponse: APLResponse?, success: Bool, error: Error?, queryType: QueryTypeEnum) {
+    private func handleGetListMediaType(for querytType:QueryTypeEnum, aplResponse: APLResponse?, success: Bool, error: Error?, queryType: QueryTypeEnum) {
         if let response = aplResponse {
             print("response: \(response.dataResponse)")
-            remoteRequestHandler?.remoteResponseSuccess(success: true, aplResponse: response)
+            remoteRequestHandler?.remoteResponseSuccess(for: querytType, success: true, aplResponse: response)
         }else {
             print("errorrorororor:  \(error?.localizedDescription)")
-            remoteRequestHandler?.remoteResponseSuccess(success: false, aplResponse: nil as APLResponse?)
+            remoteRequestHandler?.remoteResponseSuccess(for: querytType, success: false, aplResponse: nil as APLResponse?)
         }
     }
     

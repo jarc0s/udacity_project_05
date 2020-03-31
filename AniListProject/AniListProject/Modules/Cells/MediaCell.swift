@@ -13,14 +13,16 @@ class MediaCell: UITableViewCell {
     
     static let Identifier = "MediaCell"
     
+//    @IBOutlet weak var title: UILabel!
+//    @IBOutlet weak var season: UILabel!
+//    @IBOutlet weak var startDate: UILabel!
+    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var season: UILabel!
     @IBOutlet weak var startDate: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,9 +34,20 @@ class MediaCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-    
-    func configure() {
-        print(#function)
+     
+    func configure(media: Media) {
+        
+        if let titleModel = media.title {
+            let romanjiTitle = titleModel.romanji ?? ""
+            let nativeTitle = titleModel.native ?? ""
+            let englishTitle = titleModel.english ?? ""
+            
+            title.text = !romanjiTitle.isEmpty ? romanjiTitle : ( !englishTitle.isEmpty ? englishTitle : ( !nativeTitle.isEmpty ? nativeTitle : "N/A") )
+            
+        }
+        
+        season.text = media.season ?? "N/A"
+        startDate.text = media.startDate ?? "Com ing soon!!"
+        
     }
-    
 }

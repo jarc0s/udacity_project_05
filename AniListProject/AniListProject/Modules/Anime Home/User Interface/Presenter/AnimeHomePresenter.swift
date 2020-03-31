@@ -20,13 +20,21 @@ class AnimeHomePresenter  {
 extension AnimeHomePresenter: AnimeHomePresenterProtocol {
     // TODO: implement presenter methods
     func viewDidLoad() {
-        interactor?.interactorGetDataList(byType: .TopMediaByYear(year: 2015))
+        interactor?.interactorGetRemoteDataList(byType: .TopMediaByYear(year: 2015))
     }
 }
 
 extension AnimeHomePresenter: AnimeHomeInteractorOutputProtocol {
+    
+    func dataListMediaType(media: [Media]?) {
+        if let media = media {
+            view?.showMediaType(media)
+        }
+    }
+    
     // TODO: implement interactor output methods
-    func dataStored(success: Bool) {
+    func dataStored(in queryType: QueryTypeEnum, success: Bool) {
         print("data is stored: \(success)")
+        interactor?.interactorGetLocalDataList(byType: queryType)
     }
 }

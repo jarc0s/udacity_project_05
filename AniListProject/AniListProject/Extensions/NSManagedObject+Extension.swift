@@ -136,12 +136,46 @@ extension Media {
                 continue
             }
             
-            if dict[name] != nil {
+            if name == "startDate" {
+                if let startDate = dict[name] as! [String:AnyObject?]? {
+                    self.setValue(getStartDate(startDate: startDate), forKey: name)
+                }
+            }else if dict[name] != nil {
                 if let value = ReflectionEntities.makeCast(value: dict[name] as Any, types: type) {
                     self.setValue(value, forKey: name)
                 }
             }
         }
+    }
+    
+    func getStartDate(startDate: [String:AnyObject?]) -> String{
+        
+        var completeDate = ""
+        var dayI: Int = 0
+        var monthI: Int = 0
+        var yearI: Int = 0
+        
+        if let day: Int = startDate["day"] as? Int {
+            dayI = day
+        }
+        
+        if let month: Int = startDate["month"] as? Int {
+            monthI = month
+        }
+        
+        if let year: Int = startDate["year"] as? Int {
+            yearI = year
+        }
+            
+        completeDate = dayI != 0 ? "\(dayI)/" : ""
+        completeDate.append(monthI != 0 ? "\(monthI)/" : "")
+        completeDate.append(yearI != 0 ? "\(yearI)/" : "")
+            
+        if !completeDate.isEmpty {
+            return completeDate
+        }
+        
+        return "Coming soon!!"
     }
 }
 

@@ -15,26 +15,38 @@ class AnimeHomeInteractor: AnimeHomeInteractorInputProtocol {
     var localDatamanager: AnimeHomeLocalDataManagerInputProtocol?
     var remoteDatamanager: AnimeHomeRemoteDataManagerInputProtocol?
 
-    func interactorGetDataList(byType queryType: QueryTypeEnum) {
+    func interactorGetRemoteDataList(byType queryType: QueryTypeEnum) {
         remoteDatamanager?.remoteManagerGetDataListRemote(byType: queryType)
+    }
+    
+    func interactorGetLocalDataList(byType queryType: QueryTypeEnum) {
+        localDatamanager?.getDataList(for: queryType) { mediaArray in
+            self.presenter?.dataListMediaType(media: mediaArray)
+        }
     }
 }
 
 extension AnimeHomeInteractor: AnimeHomeRemoteDataManagerOutputProtocol {
     
     // TODO: Implement use case methods
-    func remoteResponseSuccess<ResponseType>(success: Bool, aplResponse: ResponseType?) {
+    func remoteResponseSuccess<ResponseType>(for querytType:QueryTypeEnum, success: Bool, aplResponse: ResponseType?) {
         print("Información obtenida: \(success)")
         //presenter?.dataStored(success: success)
         if success {
             //Store Information on core data
             if let response = aplResponse as? APLResponse {
-                localDatamanager?.storeAPLResponse(aplResponse: response){ success in
-                    self.presenter?.dataStored(success: success)
+                localDatamanager?.storeAPLResponse(for: querytType, aplResponse: response){ success in
+                    if success {
+                        self.presenter?.dataStored(in: querytType, success: success)
+                    }else {
+                        //Report Error
+                        
+                    }
                 }
             }
         }else {
             //Report Error
+            
         }
     }
 }

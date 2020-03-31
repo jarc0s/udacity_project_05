@@ -17,7 +17,7 @@ class AnimeHomeView: UIViewController {
             print("Configure tableVIEw")
             tableView.delegate = self
             tableView.dataSource = self
-            tableView.register(MediaCell.self, forCellReuseIdentifier: MediaCell.Identifier)
+            //tableView.register(MediaCell.self, forCellReuseIdentifier: "MediaCell")
             tableView.rowHeight = UITableView.automaticDimension
             tableView.estimatedRowHeight = 200
         }
@@ -28,7 +28,9 @@ class AnimeHomeView: UIViewController {
     
     var mediaData: [Media] = [] {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -54,10 +56,11 @@ extension AnimeHomeView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-//        let todo = todos[indexPath.row]
-//        cell.textLabel?.text = todo.title
-//        cell.detailTextLabel?.text = todo.content*/
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MediaCell", for: indexPath) as! MediaCell
+        
+        let media = mediaData[indexPath.row]
+        cell.configure(media: media)
+        
         return cell
     }
     

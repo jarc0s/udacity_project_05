@@ -57,12 +57,12 @@ class ANPClient {
     }
     
     
-    class func getMediaTypeList(queryType: QueryTypeEnum, requestBody: ALPRequest, completion:@escaping(APLResponse?, Bool, Error?, QueryTypeEnum) -> Void ) {
+    class func getMediaTypeList(queryType: QueryTypeEnum, requestBody: ALPRequest, completion:@escaping(QueryTypeEnum, APLResponse?, Bool, Error?, QueryTypeEnum) -> Void ) {
         taskForPOSTRequest(url: Endpoints.globalPetition.url, responseType: APLResponse.self, body: requestBody){ response, error in
             if let response = response {
-                completion(response, true, nil, queryType)
+                completion(queryType, response, true, nil, queryType)
             }else {
-                completion(nil, false, error, queryType)
+                completion(queryType, nil, false, error, queryType)
             }
         }
     }

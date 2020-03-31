@@ -72,11 +72,15 @@ struct DataSource {
         pageInfoModel.populateProperties(dictionary: pageInfo)
         pageInfoModel.queryType = queryTypeModel
         
-        if (try? context.save()) != nil {
-            completion(true)
-        }else {
-            completion(false)
+        DispatchQueue.main.async {
+            if (try? context.save()) != nil {
+                completion(true)
+            }else {
+                completion(false)
+            }
         }
+        
+        
     }
     
     
@@ -96,10 +100,12 @@ struct DataSource {
         currentPageInfo.currentPage = currentPageInfo.currentPage + 1
         
         
-        if (try? context.save()) != nil {
-            completion(true)
-        }else {
-            completion(false)
+        DispatchQueue.main.async {
+            if (try? context.save()) != nil {
+                completion(true)
+            }else {
+                completion(false)
+            }
         }
     }
     
@@ -182,7 +188,7 @@ struct DataSource {
         let predicate = NSPredicate(format: "queryType == %@", queryType.queryTypeDesc)
         let queryTypeRetrieve = retrieve(entityClass: QueryType.self, context: context, predicate: predicate)
         
-        guard let queryTypes = queryTypeRetrieve else {
+        guard let queryTypes = queryTypeRetrieve, !queryTypes.isEmpty else {
             completion(nil)
             return
         }
